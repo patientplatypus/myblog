@@ -8,12 +8,16 @@ import { Link } from 'components'
 const Nav = styled.nav`
   display: flex;
   list-style: none;
+  margin-top: 10px;
+  margin-bottom: 10px;
   > :not(:first-child) {
     margin-left: 1rem;
   }
   a {
     font-weight: 300;
-    color: ${palette('grayscale', 5)};
+    color: #748FA9;
+    background-color: #4C3957;
+    padding: 5px;
     font-size: 1.25rem;
     &.active {
       color: ${palette('grayscale', 5)};

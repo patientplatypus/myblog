@@ -5,6 +5,7 @@ import { injectGlobal, ThemeProvider } from 'styled-components'
 import { HomePage, AboutPage, PostsPage, Posts1, Posts2, Posts3, Posts4, PostsArchive, MessagePage } from 'components'
 
 // https://github.com/diegohaz/arc/wiki/Styling
+// <Route path="/" component={HomePage} exact />
 import theme from './themes/default'
 
 injectGlobal`
@@ -17,7 +18,8 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <Switch>
-        <Route path="/" component={HomePage} exact />
+        <Route path="/" component={Posts1} exact />
+        <Route path="/home" component={HomePage} exact />
         <Route path="/about" component={AboutPage} exact />
         <Route path="/posts" component={PostsPage} exact />
         <Route path="/message" component={MessagePage} exact />

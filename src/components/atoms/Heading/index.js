@@ -13,6 +13,9 @@ const styles = css`
   margin-top: 0.85714em;
   margin-bottom: 0.57142em;
   color: #414073;
+  background-color: #70A37F;
+  border-radius: 10px;
+  padding: 20px;
 `
 
 const Heading = styled(({ level, children, reverse, palette, theme, ...props }) =>

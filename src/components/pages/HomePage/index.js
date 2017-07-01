@@ -1,6 +1,6 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
-import { Badge, IconButton, Heading, Paragraph, PrimaryNavigation } from 'components'
+import { Badge, IconButton, Heading, Paragraph, ParagraphHolder, PrimaryNavigation } from 'components'
 import styled from 'styled-components'
 import renderIf from 'render-if';
 
@@ -23,17 +23,17 @@ const Hello = styled.div`
   max-width: 80px;
   background-color: blue;
 `
-const ParagraphHolder = styled.div`
-  background-color: rgba(200,200,200,0.8);
-  margin-top: 10px;
-  margin-left: 10px;
-  margin-right: 10px;
-  padding-left: 20px;
-  padding-right: 20px;
-  padding-top: 1px;
-  padding-bottom: 15px;
-  border-radius: 10px;
-`
+// const ParagraphHolder = styled.div`
+//   background-color: rgba(200,200,200,0.8);
+//   margin-top: 10px;
+//   margin-left: 10px;
+//   margin-right: 10px;
+//   padding-left: 20px;
+//   padding-right: 20px;
+//   padding-top: 1px;
+//   padding-bottom: 15px;
+//   border-radius: 10px;
+// `
 
 const HomePage = () => {
   return (
@@ -54,7 +54,7 @@ const HomePage = () => {
       <FlexRow>
         <ParagraphHolder>
           <Paragraph>
-            If you came here looking for my portfolio, well...I got bored with hosting something that is boring. I&#39;v got the spare time and scratch to host one site and so I&#39;ve got to make something to entertain, however poorly I&#39;m able. So sorry, not sorry.
+            If you came here looking for my portfolio, well...I got bored with hosting something that is boring. I&#39;ve got the spare time and scratch to host one site and so I&#39;ve got to make something to entertain, however poorly I&#39;m able. So sorry, not sorry.
           </Paragraph>
         </ParagraphHolder>
       </FlexRow>
@@ -62,11 +62,21 @@ const HomePage = () => {
         <ParagraphHolder>
           <Paragraph>
             When I&#39;m rich and famous I will point to the following sites as early influences of my genius. I hope against hope that linking to these much cooler sites will push my poor page to the top of the google search results index so someone will throw money at me.<br/>
-            <a href='maddox.xmission.com'>The Second Best Page in the Universe</a><br/>
+            <a href='http://maddox.xmission.com/'>The Second Best Page in the Universe</a><br/>
             <a href='http://xkcd.com'>Some kid that draws stick figures</a><br/>
             <a href='http://www.zombo.com/'>The only thing on the internet that makes any damn sense</a>
           </Paragraph>
         </ParagraphHolder>
+      </FlexRow>
+      <FlexRow>
+        <ParagraphHolder>
+          <Paragraph>
+            Finally, for every recruiter that is advertising entry level positions requiring 3+ years of experience I just want to tell you, you can eat shit and die screaming. No, really, that&#39;s straight from the heart. Wouldn&#39;t piss on you if you were on fire.
+          </Paragraph>
+        </ParagraphHolder>
+      </FlexRow>
+      <FlexRow>
+        <img  src={require('../../../../public/fucksea.jpg')} />
       </FlexRow>
     </FlexContainer>
   )
