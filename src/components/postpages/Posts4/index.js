@@ -1,6 +1,6 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React from 'react'
-import { Badge, IconButton, Heading, Paragraph, PrimaryNavigation, SecondaryNavigation, TertiaryNavigation } from 'components'
+import { Badge, IconButton, Heading, Paragraph, ParagraphHolder, PrimaryNavigation, SecondaryNavigation, TertiaryNavigation } from 'components'
 import styled from 'styled-components'
 
 const FlexContainer = styled.div`
@@ -22,11 +22,7 @@ const Hello = styled.div`
   max-width: 80px;
   background-color: blue;
 `
-const ParagraphHolder = styled.div`
-  background-color: rgba(200,200,200,0.8);
-  margin-left: 10px;
-  margin-right: 10px;
-`
+
 
 const Posts4 = () => {
   return (
