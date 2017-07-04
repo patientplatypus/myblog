@@ -413,7 +413,7 @@ class Posts2 extends Component{
             <TertiaryNavigation currentNav={2} latestNav={4}/>
           </FlexRow><br/>
           <FlexRow>
-            <SubHeader level={1}>Austin & THE INTERNET</SubHeader>
+            <SubHeader level={1}>ABOUT AUSTIN + STUFF</SubHeader>
           </FlexRow>
           <FlexRow>
             <SubHeader level={3}>Before the Fall</SubHeader>
@@ -484,8 +484,27 @@ class Posts2 extends Component{
             </ParagraphHolder>
           </FlexRow>
           <FlexRow>
+            <SubHeader level={2}>PHILOSOMAJIZING</SubHeader><br/>
+          </FlexRow>
+          <br/>
+          <FlexRow>
+            <ImageResizeContainer percent={40}>
+              <img style={styles.image80} src={require('../../../../public/kantphilosophizing.jpg')} />
+            </ImageResizeContainer>
+          </FlexRow>
+          <br/>
+          <FlexRow>
+            <ParagraphHolder>
+              <Paragraph>
+                In my last post I talked about what I could call the classical nerdism, the throw back roots that I think are really cool. I read today about this guy who was in the Ruby community who went by the handle _why. He was super influential in getting a lot of younger people into ruby circa 2005-ish and he did it purely for the love. Totally anonymous guy that just went to conferences and gave away a book teaching kids to code. And when he was on the verge of being outed he just infosuicided. Better to burn out than rust in place as the man said. Completely emphasizes what I think is cool about this whole coding schtick and he makes me want to learn Ruby. _why, whoever you are I love <a href='  http://www.slate.com/articles/technology/technology/2012/03/ruby_ruby_on_rails_and__why_the_disappearance_of_one_of_the_world_s_most_beloved_computer_programmers_.single.html'>you</a>.
+              </Paragraph>
+            </ParagraphHolder>
+          </FlexRow>
+          <br/>
+          <FlexRow>
             <SubHeader level={2}>WELCOME TO THE INTERWEBS</SubHeader><br/>
           </FlexRow>
+          <br/>
           <FlexRow>
             <ImageResizeContainer percent={14}>
               <img style={styles.image80} src={require('../../../../public/jeninternet.gif')} />
