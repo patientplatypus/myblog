@@ -114,7 +114,7 @@ class ListEquipment extends Component{
   getImage(e){
     e.preventDefault();
     var self = this;
-    axios.post('http://localhost:5000/post2/equipmentimage', {
+    axios.post('https://fierce-shore-53488.herokuapp.com/post2/equipmentimage', {
       search: this.props.equipment,
     })
       .then((response)=>{

@@ -119,7 +119,7 @@ class ListClass extends Component{
   getImage(e){
     e.preventDefault();
     var self = this;
-    axios.post('http://localhost:5000/post2/characterimage', {
+    axios.post('https://fierce-shore-53488.herokuapp.com/post2/characterimage', {
       search: this.props.classes,
     })
       .then((response)=>{

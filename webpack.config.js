@@ -1,5 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Webpack
 const path = require('path')
+require("babel-core/register");
+require("babel-polyfill");
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const devServer = require('@webpack-blocks/dev-server2')
 const splitVendor = require('webpack-blocks-split-vendor')
@@ -28,7 +30,7 @@ const babel = () => () => ({
 const assets = () => () => ({
   module: {
     rules: [
-      { test: /\.(png|mov|jpe?g|svg|woff2?|gif|ttf|eot)$/, loader: 'url-loader?limit=8000' },
+      { test: /\.(png|mov|m4v|jpe?g|svg|woff2?|gif|ttf|eot)$/, loader: 'url-loader?limit=8000' },
     ],
   },
 })

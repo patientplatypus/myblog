@@ -4,10 +4,13 @@
       "modules": false
     }],
     "react",
+    "es2015",
+    "stage-0",
     "stage-1"
   ],
   "plugins": [
-    "react-hot-loader/babel"
+    "react-hot-loader/babel",
+    ["transform-runtime", { "polyfill": false, "regenerator": true }]
   ],
   "env": {
     "development": {
@@ -15,7 +18,8 @@
         "transform-es2015-modules-commonjs",
         ["styled-components", {
           "minify": false
-        }]
+        }],
+        ["transform-runtime", { "polyfill": false, "regenerator": true }]
       ]
     },
     "test": {
@@ -28,7 +32,8 @@
         "transform-react-remove-prop-types",
         ["styled-components", {
           "displayName": false
-        }]
+        }],
+        ["transform-runtime", { "polyfill": false, "regenerator": true }]
       ]
     }
   }

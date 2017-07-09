@@ -171,7 +171,8 @@ class Posts2 extends Component{
      console.log('inside getCalendarInfo');
 // https://boiling-spire-25262.herokuapp.com
 // http://localhost:5000/hello
-       axios.post('https://boiling-spire-25262.herokuapp.com/hello')
+// https://git.heroku.com/fierce-shore-53488.git
+       axios.post('https://fierce-shore-53488.herokuapp.com/hello')
          .then((response)=>{
           console.log('response from the hello call ', response);
          })
@@ -189,7 +190,7 @@ class Posts2 extends Component{
        characterModal: true,
        containernumber: 0
      });
-     axios.post('http://localhost:5000/post2/changeCharacter')
+     axios.post('https://fierce-shore-53488.herokuapp.com/post2/changeCharacter')
        .then((response)=>{
         console.log('response from the hello call ', response);
 
@@ -282,7 +283,7 @@ class Posts2 extends Component{
        equipmentModal: true,
        containernumber: containernumber
      });
-     axios.post('http://localhost:5000/post2/changeEquipment')
+     axios.post('https://fierce-shore-53488.herokuapp.com/post2/changeEquipment')
        .then((response)=>{
         console.log('response from the hello call ', response);
 
@@ -517,25 +518,19 @@ class Posts2 extends Component{
               </Paragraph>
             </ParagraphHolder>
           </FlexRow>
+          <br/>
           <FlexRow>
             <ParagraphHolder>
               <Paragraph>
-                Also, check this shit out.
+                <a href="https://giphy.com/search/trippy">Also, check this shit out.</a>
               </Paragraph>
             </ParagraphHolder>
           </FlexRow>
           <br/>
           <FlexRow>
-            <video width="1000" height="600" controls>
-              <source src={require('../../../../public/giphymagician.mov')}/>
-              Your browser does not support the video tag.
-            </video>
-          </FlexRow>
-          <br/>
-          <FlexRow>
             <ParagraphHolder>
               <Paragraph>
-                Apparently if you search for "trippy" on giphy you get this stoner magician who will wave his magic wand and make all the giphs turn into photographic negatives. Well done Imgur, I did not even know that was a thing.
+                Apparently if you search for "trippy" on giphy you get this stoner magician who will wave his magic wand and make all the giphs turn into photographic negatives. Well done Giphy, I did not even know that was a thing.
               </Paragraph>
             </ParagraphHolder>
           </FlexRow>
