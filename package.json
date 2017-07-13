@@ -79,7 +79,7 @@
   },
   "dependencies": {
     "axios": "^0.16.2",
-    "history": "^4.6.1",
+    "history": "^4.6.3",
     "lodash": "^4.17.4",
     "material-ui": "^0.18.5",
     "normalizr": "^3.0.1",

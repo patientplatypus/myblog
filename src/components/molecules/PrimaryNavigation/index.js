@@ -28,6 +28,7 @@ const PrimaryNavigation = (props) => {
       <li><Link to="/about" activeClassName="active">About</Link></li>
       <li><Link to="/posts" activeClassName="active">Posts</Link></li>
       <li><Link to="/message" activeClassName="active">Message</Link></li>
+      <li><Link to="/pictureswapper" activeClassName="active">Picture Swapper</Link></li>
     </Nav>
   )
 }
