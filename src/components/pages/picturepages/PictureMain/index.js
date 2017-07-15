@@ -10,6 +10,10 @@ import Modal from './Modal';
 import OtherUser from './OtherUser';
 import OtherUserPictureContainer from './OtherUserPictureContainer';
 import AllPicturesForSale from './AllPicturesForSale';
+import { font, palette } from 'styled-theme'
+import { ThemeProvider } from 'styled-components'
+import './main.css'
+
 
 
 const FlexContainer = styled.div`
@@ -133,6 +137,29 @@ const PictureHeader = styled.div`
   border-color: #4C3957
   border-width: 2px;
 `
+
+const YourPicturesContainer = styled.div`
+  width: 100%;
+  marign: 0;
+`
+// font-family: 'Diplomata SC, cursive';
+// font-family: ${font('money')}
+// const moneyTheme ={
+//   fonts: {
+//      primary: 'Diplomata SC, cursive'
+//    },
+//    palette: {
+//      moneygreen: '#70A37F'
+//   }
+// }
+//
+// const MoneyBox = styled.span`
+//   font-family: ${font('primary')};
+//   font-size: 50px;
+//   background-color: transparent
+//   color: #70A37F
+// `
+
 
 const styles = {
   images: {
@@ -648,21 +675,31 @@ class PictureMain extends Component{
           <FlexRow>
             <PrimaryNavigation/>
           </FlexRow>
-          <FlexRow>
-            <SubHeader level={2}>MAIN PICTURES PAGE</SubHeader>
-          </FlexRow>
-          <FlexRow>
-            <SubHeader level={3}>THIS IS HOW MUCH MONEY YOU GOT</SubHeader>
-          </FlexRow><br/>
-          <FlexRow>
-            {this.state.usermoney}
-          </FlexRow>
-          <FlexRow>
-            <SubHeader level={3}>UPLOAD A PICTURE</SubHeader>
-          </FlexRow><br/>
+          {renderIf(this.state.sellmodal===false)(
+          <div>
+          <AlignContainer>
+            <FlexRow>
+              <SubHeader level={2}>MAIN PICTURES PAGE</SubHeader>
+            </FlexRow>
+            <FlexRow>
+              <SubHeader level={3}>THIS IS HOW MUCH MONEY YOU GOT</SubHeader>
+            </FlexRow><br/>
+            <FlexRow>
+              <div className="money"> {this.state.usermoney} </div>
+            </FlexRow>
+            <FlexRow>
+              <SubHeader level={3}>UPLOAD A PICTURE</SubHeader>
+            </FlexRow><br/>
+            <FlexRow>
+              <button onClick={() => {this.openModalAddPicture()}}>Buy A Picture from Web</button>
+            </FlexRow>
+            <FlexRow>
+              <SubHeader level={3}>YOUR PICTURES</SubHeader>
+            </FlexRow>
+            <br/>
+          </AlignContainer>
 
           <FlexRow>
-            <button onClick={() => {this.openModalAddPicture()}}>Buy A Picture from Web</button>
             <Modal isOpen={this.state.isModalOpenAddPicture}>
               <AlignContainer>
                 <PictureHeader>
@@ -691,56 +728,54 @@ class PictureMain extends Component{
             </Modal>
           </FlexRow>
 
-          <FlexRow>
-            <SubHeader level={3}>YOUR PICTURES</SubHeader>
-          </FlexRow>
 
-          {renderIf(this.state.sellmodal===false)(
-            <div>
-            <FlexRow>
-              <FlexMargin/>
-              <FlexSize1>
-                <AlignContainer>
-                  <PictureHeader>
-                    <h3>Your Pictures</h3>
-                  </PictureHeader>
-                </AlignContainer>
-                {pictureContainers}
-              </FlexSize1>
-              <FlexSize2>
-                <AlignContainer>
-                  <PictureHeader>
-                    <h3>Your Pictures for Sale</h3>
-                  </PictureHeader>
-                </AlignContainer>
-                {pictureContainersforsale}
-              </FlexSize2>
-              <FlexMargin/>
-            </FlexRow>
-            <AlignContainer>
-            <FlexRow>
-              <SubHeader level={3}>PICTURES FOR SALE</SubHeader>
-            </FlexRow>
-            <FlexRow>
-              {allpicturesforsalemap}
-            </FlexRow>
-            <FlexRow>
-              <SubHeader level={3}>OTHER USERS</SubHeader>
-            </FlexRow>
-            <FlexRow>
-              <FlexMargin/>
-              <FlexSize1>
-                {AllUser}
-              </FlexSize1>
-              <FlexMargin/>
-            </FlexRow>
-            </AlignContainer>
+
+
+            <YourPicturesContainer>
+              <FlexRow>
+                <FlexMargin/>
+                <FlexSize1>
+                  <AlignContainer>
+                    <PictureHeader>
+                      <h3>Your Pictures</h3>
+                    </PictureHeader>
+                  </AlignContainer>
+                  {pictureContainers}
+                </FlexSize1>
+                <FlexSize2>
+                  <AlignContainer>
+                    <PictureHeader>
+                      <h3>Your Pictures for Sale</h3>
+                    </PictureHeader>
+                  </AlignContainer>
+                  {pictureContainersforsale}
+                </FlexSize2>
+                <FlexMargin/>
+              </FlexRow>
+              <AlignContainer>
+                <FlexRow>
+                  <SubHeader level={3}>PICTURES FOR SALE</SubHeader>
+                </FlexRow>
+                <FlexRow>
+                  {allpicturesforsalemap}
+                </FlexRow>
+                <FlexRow>
+                  <SubHeader level={3}>OTHER USERS</SubHeader>
+                </FlexRow>
+                <FlexRow>
+                  <FlexMargin/>
+                  <FlexSize1>
+                    {AllUser}
+                  </FlexSize1>
+                  <FlexMargin/>
+                </FlexRow>
+              </AlignContainer>
+            </YourPicturesContainer>
             </div>
           )}
+
           {renderIf(this.state.sellmodal===true)(
-            <FlexRow>
-              <SellModal sellpicturedata={this.state.sellpicturedata} username={this.state.username} sellModalClose={this.sellModalClose.bind(this)}/>
-            </FlexRow>
+            <SellModal sellpicturedata={this.state.sellpicturedata} username={this.state.username} sellModalClose={this.sellModalClose.bind(this)}/>
           )}
 
 
@@ -776,7 +811,7 @@ class PictureMain extends Component{
                   </PictureHeader>
                 </AlignContainer>
             )}
-            {renderIf(this.state.otheruserpicturearrayforsale.length!=0 && this.state.otheruserpicturearray.length!=0)(
+            {renderIf(this.state.otheruserpicturearrayforsale.length!=0 || this.state.otheruserpicturearray.length!=0)(
               <FlexRowModal>
                 <FlexMargin/>
                 <FlexSize1>

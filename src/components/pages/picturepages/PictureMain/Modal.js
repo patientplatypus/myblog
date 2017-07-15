@@ -39,7 +39,7 @@ class Modal extends Component{
 
   componentWillReceiveProps(nextProps){
     if (nextProps.isOpen===true && this.state.openModal===false){
-      document.body.scrollTop = 0;
+      document.body.scrollTop = window.scrollY;
       document.body.style.overflow = 'hidden';
       this.setState({
         openModal: true
@@ -60,7 +60,7 @@ class Modal extends Component{
 
     let modalStyle = {
       position: 'absolute',
-      top: '50%',
+      top: window.scrollY + window.innerHeight/2,
       left: '50%',
       transform: 'translate(-50%, -50%)',
       zIndex: '9999',
@@ -68,14 +68,16 @@ class Modal extends Component{
       overflow: 'hidden',
       minWidth: '80vw',
       minHeight: '40vh',
-      height: 'auto'
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      overflowY: 'auto',
     }
 
     let backdropStyle = {
       position: 'absolute',
       width: '100%',
       height: '100%',
-      top: '0px',
+      top: window.scrollY + 'px',
       left: '0px',
       zIndex: '9998',
       background: 'rgba(0,0,0,0.3)',

@@ -20,6 +20,18 @@ const FlexRow = styled.div`
   display: flex;
 `
 
+const SellContainer = styled.div`
+  background-color: orange;
+  border-radius: 5px;
+  padding: 10 px;
+  margin: 5 px;
+  width: 80%;
+  border-width: 30px;
+  border-color: purple;
+  border-style: solid;
+  margin-top: 10px;
+`
+
 
 const styles = {
   images: {
@@ -101,18 +113,20 @@ class SellModal extends Component{
 
   render(){
     return(
-      <AlignContainer>
-        <br/>
-        <h3> How Much Would You like to Sell For?</h3>
-        <br/>
-        <img src={this.state.pictureurl}/>
-        <FlexRow>
-          <p>Enter a New Price to Sell At</p>
-        </FlexRow>
-        <input  value={this.state.currentprice} onChange={(e)=>{this.setState({currentprice: e.target.value})}} type="currentprice" name="currentprice" placeholder="currentprice"/><br/>
-        <button onClick={(e)=>this.sendtoSellModalClose(e)}>Save</button>
-        <br/>
-      </AlignContainer>
+      <SellContainer>
+        <AlignContainer>
+          <br/>
+          <h3> How Much Would You like to Sell For?</h3>
+          <br/>
+          <img src={this.state.pictureurl}/>
+          <FlexRow>
+            <p>Enter a New Price to Sell At</p>
+          </FlexRow>
+          <input  value={this.state.currentprice} onChange={(e)=>{this.setState({currentprice: e.target.value})}} type="currentprice" name="currentprice" placeholder="currentprice"/><br/>
+          <button onClick={(e)=>this.sendtoSellModalClose(e)}>Save</button>
+          <br/>
+        </AlignContainer>
+      </SellContainer>
     )
   }
 }

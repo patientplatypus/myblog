@@ -1,0 +1,19 @@
+@import url('https://fonts.googleapis.com/css?family=Diplomata+SC');
+
+  /*font-family: 'Diplomata SC', cursive;*/
+  /*font-size: "50px";
+  color: '#70A37F';*/
+
+.money {
+  /*background-color: brown;*/
+  font-family: 'Diplomata SC', cursive;
+  text-align: center;
+  padding-top: 40px;
+  color: green;
+  background-color:  #70A37F;
+  width: 300px;
+  height: 100px;
+  /*width: 100px;
+  height: 100px;*/
+  font-size: 50px;
+}

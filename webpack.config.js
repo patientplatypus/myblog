@@ -40,10 +40,25 @@ const flex = () => () => ({
   module: {
     rules: [
       // {  test: /\.css$/, loader: 'style-loader!css-loader', include: /flexboxgrid/ },
+      // { test: /\.css$/, loader: "style-loader!css-loader" },
+      // /(\.css)$/
       {test: /(\.css)$/, loader: ['style-loader', 'css-loader?modules'], include: /flexboxgrid/},
     ],
   },
 })
+
+//platypus added
+const fixcss = () => () => ({
+  module: {
+      rules: [
+        {
+          test: /\.css$/,
+          use: [ 'style-loader', 'css-loader' ]
+        }
+      ]
+    }
+})
+
 
 const resolveModules = modules => () => ({
   resolve: {
@@ -76,6 +91,8 @@ const config = createConfig([
   ]),
   assets(),
   flex(), //platypus added
+  fixcss(), //platypus added
+  // tousestaticcss(), //platypus added
   resolveModules(sourceDir),
 
   env('development', [
