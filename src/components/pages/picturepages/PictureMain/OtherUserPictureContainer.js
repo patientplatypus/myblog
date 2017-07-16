@@ -19,6 +19,14 @@ const FlexRow = styled.div`
   flex-direction: row;
 `
 
+const AlphaPictureHolder = styled.div`
+  border-radius: 10px;
+  padding: 5px;
+  padding-top: 15px;
+  background-color: rgba(255, 251, 242, 0.7);
+  margin: 5px;
+  margin-bottom: 20px;
+`
 
 const styles = {
   images: {
@@ -58,26 +66,26 @@ class OtherUserPictureContainer extends Component{
 
   render(){
     return(
-      <AlignContainer>
-        <img style={styles.images} src={this.props.picture.pictureurl}/>
-        <br/>
-        {renderIf(this.props.picture.currentprice == -1)(
-          <div>
-            <p>Not currently for sale</p>
-          </div>
-        )}
-        {renderIf(this.props.picture.currentprice != -1)(
-          <div>
-            <AlignContainer>
-              <p>The asking price is </p>
-              <strong>{this.props.picture.currentprice}</strong><br/>
-              <button onClick={(e)=>this.sendtobuyPicture(e)}>Buy Picture!</button>
-            </AlignContainer>
-
-          </div>
-        )}
-
-      </AlignContainer>
+      <AlphaPictureHolder>
+        <AlignContainer>
+          <img style={styles.images} src={this.props.picture.pictureurl}/>
+          <br/>
+          {renderIf(this.props.picture.currentprice == -1)(
+            <div>
+              <p>Not currently for sale</p>
+            </div>
+          )}
+          {renderIf(this.props.picture.currentprice != -1)(
+            <div>
+              <AlignContainer>
+                <p>The asking price is </p>
+                <strong>{this.props.picture.currentprice}</strong><br/>
+                <button onClick={(e)=>this.sendtobuyPicture(e)}>Buy Picture!</button>
+              </AlignContainer>
+            </div>
+          )}
+        </AlignContainer>
+      </AlphaPictureHolder>
     )
   }
 }

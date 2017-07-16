@@ -142,24 +142,70 @@ const YourPicturesContainer = styled.div`
   width: 100%;
   marign: 0;
 `
-// font-family: 'Diplomata SC, cursive';
-// font-family: ${font('money')}
-// const moneyTheme ={
-//   fonts: {
-//      primary: 'Diplomata SC, cursive'
-//    },
-//    palette: {
-//      moneygreen: '#70A37F'
-//   }
-// }
-//
-// const MoneyBox = styled.span`
-//   font-family: ${font('primary')};
-//   font-size: 50px;
-//   background-color: transparent
-//   color: #70A37F
-// `
 
+const Flex1Transparent = styled.div`
+  flex: 1;
+  background-color: transparent;
+`
+
+const FlexColumn = styled.div`
+  -ms-box-orient: horizontal;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -moz-flex;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  flex-direction: column;
+`
+
+const PictureScrollUsers = styled.div`
+  max-height: 60vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
+`
+
+const OtherUsersScroll = styled.div`
+  max-height: 20vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  position: relative;
+`
+
+const NoPictureContainer = styled.div`
+  display: block;
+  margin-top: 10vh;
+  padding-top: 10vh;
+  padding-right: 1vw;
+  padding-left: 1vw;
+  width: 80%;
+  height: 20vh;
+  text-align: center;
+  background-color: #232C33;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 20px;
+  border-radius: 10px;
+`
+
+const NoPictureContainerOtherUsers = styled.div`
+  display: block;
+  padding-top: 10vh;
+  padding-right: 1vw;
+  padding-left: 1vw;
+  width: 80%;
+  height: 20vh;
+  text-align: center;
+  background-color: #232C33;
+  color: white;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 20px;
+  border-radius: 10px;
+`
 
 const styles = {
   images: {
@@ -171,6 +217,9 @@ const styles = {
   nopictures: {
     marginTop: '100px',
     marginBottom: '10px'
+  },
+  bankBackground: {
+    backgroundColor: "#A9B5C6"
   }
 }
 
@@ -679,19 +728,123 @@ class PictureMain extends Component{
           <div>
           <AlignContainer>
             <FlexRow>
-              <SubHeader level={2}>MAIN PICTURES PAGE</SubHeader>
+              <SubHeader level={2}>WELCOME {this.state.username}</SubHeader>
             </FlexRow>
             <FlexRow>
               <SubHeader level={3}>THIS IS HOW MUCH MONEY YOU GOT</SubHeader>
             </FlexRow><br/>
+
             <FlexRow>
-              <div className="money"> {this.state.usermoney} </div>
+              <div className='bankroofcontainer'>
+                <FlexRow>
+                  <div className='bankroofinner'>
+                    BANK
+                  </div>
+                  <div className='bankroof'></div>
+                </FlexRow>
+              </div>
             </FlexRow>
+            <FlexRow>
+              <Flex1Transparent>
+                <FlexColumn>
+                  <div className='ahead4'>
+                    <div className="pillarmainaheadahead"></div>
+                    <div className="pillarbaseaheadahead"></div>
+                  </div>
+                </FlexColumn>
+                <FlexColumn>
+                </FlexColumn>
+              </Flex1Transparent>
+              <Flex1Transparent>
+                <FlexColumn>
+                  <div className='ahead2'>
+                    <div className="pillarmainahead"></div>
+                    <div className="pillarbaseahead"></div>
+                  </div>
+                </FlexColumn>
+                <FlexColumn>
+                </FlexColumn>
+              </Flex1Transparent>
+                <Flex1Transparent style={styles.bankBackground}>
+                  <FlexColumn>
+                    <div className="pillarmain"></div>
+                    <div className="pillarbase"></div>
+                  </FlexColumn>
+                  <FlexColumn>
+                  </FlexColumn>
+                </Flex1Transparent>
+                <Flex1Transparent style={styles.bankBackground}>
+                  <FlexColumn>
+                    <Flex1Transparent>
+                    </Flex1Transparent>
+                    <Flex1Transparent>
+                      <FlexRow>
+                        <div className='moneycontainer'>
+                          <FlexRow>
+                            <div className="platypuswetrust">
+                              IN PLATYPUS WE TRUST
+                            </div>
+                            <div className='platypusbackground'>
+                                <img className='platypusbackgroundimg' src={require('../../../../../public/platypushorizontaldarkgreen.png')} />
+                            </div>
+                            <div className='platypusicon'>
+                                <img className='platypusiconimg' src={require('../../../../../public/platypusverticaldarkgreen.png')} />
+                            </div>
+                            <div className='smallmoneynumber'>
+                              {this.state.usermoney}
+                            </div>
+                            <div className='smallmoney'>
+                              <div className='burst-12'>
+                              </div>
+                            </div>
+                            <div className="money">
+                              <div className="moneynumber">
+                                {this.state.usermoney}
+                              </div>
+                            </div>
+                          </FlexRow>
+                        </div>
+                      </FlexRow>
+                    </Flex1Transparent>
+                    <Flex1Transparent>
+                    </Flex1Transparent>
+                  </FlexColumn>
+                </Flex1Transparent>
+                <Flex1Transparent style={styles.bankBackground}>
+                  <FlexColumn className='fixzindex'>
+                      <div className="pillarmain"></div>
+                      <div className="pillarbase"></div>
+                  </FlexColumn>
+                  <FlexColumn>
+                  </FlexColumn>
+                </Flex1Transparent>
+                <Flex1Transparent>
+                  <FlexColumn>
+                    <div className='ahead'>
+                      <div className="pillarmainahead"></div>
+                      <div className="pillarbaseahead"></div>
+                    </div>
+                  </FlexColumn>
+                  <FlexColumn>
+                  </FlexColumn>
+                </Flex1Transparent>
+                <Flex1Transparent>
+                  <FlexColumn>
+                    <div className='ahead3'>
+                      <div className="pillarmainaheadahead"></div>
+                      <div className="pillarbaseaheadahead"></div>
+                    </div>
+                  </FlexColumn>
+                  <FlexColumn>
+                  </FlexColumn>
+                </Flex1Transparent>
+              </FlexRow>
+
             <FlexRow>
               <SubHeader level={3}>UPLOAD A PICTURE</SubHeader>
             </FlexRow><br/>
             <FlexRow>
-              <button onClick={() => {this.openModalAddPicture()}}>Buy A Picture from Web</button>
+              <div className="button" onClick={() => {this.openModalAddPicture()}}>buy a web pic</div>
             </FlexRow>
             <FlexRow>
               <SubHeader level={3}>YOUR PICTURES</SubHeader>
@@ -732,32 +885,60 @@ class PictureMain extends Component{
 
 
             <YourPicturesContainer>
-              <FlexRow>
-                <FlexMargin/>
-                <FlexSize1>
-                  <AlignContainer>
-                    <PictureHeader>
-                      <h3>Your Pictures</h3>
-                    </PictureHeader>
-                  </AlignContainer>
-                  {pictureContainers}
-                </FlexSize1>
-                <FlexSize2>
-                  <AlignContainer>
-                    <PictureHeader>
-                      <h3>Your Pictures for Sale</h3>
-                    </PictureHeader>
-                  </AlignContainer>
-                  {pictureContainersforsale}
-                </FlexSize2>
-                <FlexMargin/>
-              </FlexRow>
-              <AlignContainer>
+
+                <FlexRow>
+                  <FlexMargin/>
+                  <FlexSize1>
+                    <AlignContainer>
+                      <PictureHeader>
+                        <h3>Your Pictures</h3>
+                      </PictureHeader>
+                    </AlignContainer>
+                    <PictureScrollUsers>
+                      {pictureContainers}
+                      {renderIf(this.state.picturearray.length===0)(
+                        <NoPictureContainer>
+                          <p> You do not have any pictures that are not for sale. </p>
+                        </NoPictureContainer>
+                      )}
+                    </PictureScrollUsers>
+                  </FlexSize1>
+                  <FlexSize2>
+                    <AlignContainer>
+                      <PictureHeader>
+                        <h3>Your Pictures for Sale</h3>
+                      </PictureHeader>
+                    </AlignContainer>
+                    <PictureScrollUsers>
+                      {pictureContainersforsale}
+                      {renderIf(this.state.picturearrayforsale.length===0)(
+                        <NoPictureContainer>
+                          <p>You do not have any pictures for sale.</p>
+                        </NoPictureContainer>
+                      )}
+                    </PictureScrollUsers>
+                  </FlexSize2>
+                  <FlexMargin/>
+                </FlexRow>
+
+
+
                 <FlexRow>
                   <SubHeader level={3}>PICTURES FOR SALE</SubHeader>
                 </FlexRow>
                 <FlexRow>
-                  {allpicturesforsalemap}
+                  <FlexMargin/>
+                  <FlexSize2>
+                    <PictureScrollUsers>
+                      {allpicturesforsalemap}
+                      {renderIf(this.state.allpicturesforsalearray.length===0)(
+                        <NoPictureContainerOtherUsers>
+                          <p>No other users currently have any pictures for sale</p>
+                        </NoPictureContainerOtherUsers>
+                      )}
+                    </PictureScrollUsers>
+                  </FlexSize2>
+                  <FlexMargin/>
                 </FlexRow>
                 <FlexRow>
                   <SubHeader level={3}>OTHER USERS</SubHeader>
@@ -765,11 +946,14 @@ class PictureMain extends Component{
                 <FlexRow>
                   <FlexMargin/>
                   <FlexSize1>
+                  <OtherUsersScroll>
                     {AllUser}
+                  </OtherUsersScroll>
                   </FlexSize1>
                   <FlexMargin/>
                 </FlexRow>
-              </AlignContainer>
+                <br/>
+
             </YourPicturesContainer>
             </div>
           )}
@@ -804,6 +988,11 @@ class PictureMain extends Component{
 
 
           <Modal isOpen={this.state.isModalOpenOtherUser} >
+            <AlignContainer>
+              <h3>
+                These are all the pictures from {this.state.otherusername}
+              </h3>
+            </AlignContainer>
             {renderIf(this.state.otheruserpicturearrayforsale.length===0 && this.state.otheruserpicturearray.length===0)(
                 <AlignContainer>
                   <PictureHeader style={styles.nopictures}>
@@ -820,7 +1009,14 @@ class PictureMain extends Component{
                       <h3>Pictures</h3>
                     </PictureHeader>
                   </AlignContainer>
-                  {otheruserpictureContainers}
+                  <PictureScrollUsers>
+                    {otheruserpictureContainers}
+                    {renderIf(this.state.otheruserpicturearray.length===0)(
+                      <NoPictureContainer>
+                        <p>{this.state.otherusername} does not have any pictures not for sale</p>
+                      </NoPictureContainer>
+                    )}
+                  </PictureScrollUsers>
                 </FlexSize1>
                 <FlexSize2>
                   <AlignContainer>
@@ -828,7 +1024,14 @@ class PictureMain extends Component{
                       <h3>Pictures for Sale</h3>
                     </PictureHeader>
                   </AlignContainer>
+                  <PictureScrollUsers>
                   {otheruserpictureContainersforsale}
+                  {renderIf(this.state.otheruserpicturearrayforsale.length===0)(
+                    <NoPictureContainer>
+                      <p>{this.state.otherusername} does not have any pictures sale</p>
+                    </NoPictureContainer>
+                  )}
+                  </PictureScrollUsers>
                 </FlexSize2>
                 <FlexMargin/>
               </FlexRowModal>
@@ -843,10 +1046,6 @@ class PictureMain extends Component{
 
         </FlexContainer>
       )}
-
-
-
-
       </div>
     )
   }

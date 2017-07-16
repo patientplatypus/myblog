@@ -518,7 +518,7 @@ class Posts2 extends Component{
               </Paragraph>
             </ParagraphHolder>
           </FlexRow>
-          <br/>
+
           <FlexRow>
             <ParagraphHolder>
               <Paragraph>

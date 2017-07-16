@@ -20,19 +20,26 @@ const FlexRow = styled.div`
 `
 
 const PictureContainer = styled.div`
-  max-width: 200px;
-  max-height: 400px;
-  background-color: skyblue;
+  text-align: center;
+  max-width: 100%;
+  height: auto;
+`
+
+const AlphaPictureHolder = styled.div`
+  border-radius: 10px;
+  padding: 5px;
+  padding-top: 15px;
+  background-color: rgba(255, 251, 242, 0.7);
+  margin: 5px;
+  margin-bottom: 20px;
+  height: 56vh;
 `
 
 const styles = {
   images: {
-    maxWidth: "90%",
-    minWidth: "90%",
-    paddingLeft: "40px",
-    paddingRight: "40px",
-    marginTop: "10px",
-    marginBottom: "10px"
+    width: 'auto',
+    maxHeight: "72%",
+    minHeight: "72%",
   }
 }
 
@@ -56,14 +63,13 @@ class AllPicturesForSale extends Component{
   render(){
     return(
       <PictureContainer>
-        <AlignContainer>
-          <img style={styles.images} src={this.props.picture.pictureurl}/>
-          <p>This is the current price </p>
-          <br/>
-          {this.props.picture.currentprice}
-          <br/>
-          <button onClick={(e)=>this.sendtoModal(e)}>Buy Picture</button>
-        </AlignContainer>
+          <AlphaPictureHolder>
+            <img style={styles.images} src={this.props.picture.pictureurl}/>
+            <div className="platybucks">
+              <p><strong>{this.props.picture.currentprice} </strong> platybucks</p>
+            </div>
+            <div className='buttonsmall' onClick={(e)=>this.sendtoModal(e)}>Buy Picture</div>
+          </AlphaPictureHolder>
       </PictureContainer>
     )
   }

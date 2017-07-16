@@ -4,6 +4,7 @@ import { Badge, IconButton, Heading, Paragraph, ParagraphHolder, PrimaryNavigati
 import renderIf from 'render-if'
 import styled from 'styled-components'
 import axios from 'axios'
+import './main.css'
 
 const FlexContainer = styled.div`
   display: -webkit-flex;
@@ -32,13 +33,23 @@ const SellContainer = styled.div`
   margin-top: 10px;
 `
 
+const ImgContainer = styled.div`
+  max-width: 60vw;
+  margin: 0 auto;
+  height: auto;
+`
+
 
 const styles = {
   images: {
-    width: "200px",
+    maxWidth: "100%",
+    width: "100%",
     height: "auto",
-    paddingLeft: "40px",
-    paddingRight: "40px"
+  },
+  warning: {
+    fontSize: "20px",
+    fontWeight: "bold",
+    color: "red"
   }
 }
 
@@ -49,9 +60,9 @@ class SellModal extends Component{
       pictureurl: null,
       boughtfor: null,
       soldfor: null,
-      currentprice: null,
+      currentprice: '1',
       pictureid: null,
-      userref: null
+      userref: null,
     }
   }
 
@@ -68,7 +79,7 @@ class SellModal extends Component{
         pictureurl: this.props.sellpicturedata['pictureurl'],
         boughtfor: this.props.sellpicturedata['boughtfor'],
         soldfor: this.props.sellpicturedata['soldfor'],
-        currentprice: 0,
+        currentprice: 1,
         pictureid: this.props.sellpicturedata['pictureid'],
         userref: this.props.sellpicturedata['userref']
       })
@@ -92,22 +103,23 @@ class SellModal extends Component{
 
   sendtoSellModalClose(e){
     e.preventDefault();
-    axios.post('http://localhost:5000/changeprice', {
-      pictureid: this.state.pictureid,
-      name: this.state.username,
-      userref: this.state.userref,
-      pictureurl: this.state.pictureurl,
-      currentprice: this.state.currentprice
-    })
-      .then((response)=>{
-       console.log('response from the python call ', response.data);
-       this.props.sellModalClose(this.props.username);
-     })
-     .catch((err)=>{
-       console.log('python axios error');
-       console.log('and the error is ', err);
-     });
-
+    if (Number.isInteger(Number(this.state.currentprice))){
+      axios.post('http://localhost:5000/changeprice', {
+        pictureid: this.state.pictureid,
+        name: this.state.username,
+        userref: this.state.userref,
+        pictureurl: this.state.pictureurl,
+        currentprice: this.state.currentprice
+      })
+        .then((response)=>{
+         console.log('response from the python call ', response.data);
+         this.props.sellModalClose(this.props.username);
+       })
+       .catch((err)=>{
+         console.log('python axios error');
+         console.log('and the error is ', err);
+       });
+    }
   }
 
 
@@ -118,12 +130,33 @@ class SellModal extends Component{
           <br/>
           <h3> How Much Would You like to Sell For?</h3>
           <br/>
-          <img src={this.state.pictureurl}/>
+          <ImgContainer>
+            <img style={styles.images} src={this.state.pictureurl}/>
+          </ImgContainer>
           <FlexRow>
             <p>Enter a New Price to Sell At</p>
           </FlexRow>
+
           <input  value={this.state.currentprice} onChange={(e)=>{this.setState({currentprice: e.target.value})}} type="currentprice" name="currentprice" placeholder="currentprice"/><br/>
-          <button onClick={(e)=>this.sendtoSellModalClose(e)}>Save</button>
+          {renderIf(Number.isInteger(Number(this.state.currentprice))===false)(
+            <FlexRow>
+              <p style={styles.warning}> You are only allowed to set the price to a positive integer value!</p>
+            </FlexRow>
+          )}
+          {renderIf(Number.isInteger(Number(this.state.currentprice)))(
+            <div>
+              {renderIf((Number(this.state.currentprice) <= 0))(
+                <FlexRow>
+                  <p style={styles.warning}> You are only allowed to set the price to a positive integer value!</p>
+                </FlexRow>
+              )}
+              {renderIf((Number(this.state.currentprice) > 0))(
+                <FlexRow>
+                  <div className="button" onClick={(e)=>this.sendtoSellModalClose(e)}> Save </div>
+                </FlexRow>
+              )}
+            </div>
+          )}
           <br/>
         </AlignContainer>
       </SellContainer>

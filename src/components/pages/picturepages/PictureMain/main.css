@@ -1,19 +1,345 @@
 @import url('https://fonts.googleapis.com/css?family=Diplomata+SC');
+@import url('https://fonts.googleapis.com/css?family=Pacifico');
 
   /*font-family: 'Diplomata SC', cursive;*/
   /*font-size: "50px";
   color: '#70A37F';*/
 
+  /*dark green #27871C*/
+
 .money {
   /*background-color: brown;*/
-  font-family: 'Diplomata SC', cursive;
+  margin-top: 5px;
   text-align: center;
   padding-top: 40px;
-  color: green;
   background-color:  #70A37F;
   width: 300px;
   height: 100px;
   /*width: 100px;
   height: 100px;*/
+}
+
+.moneynumber {
+  font-family: 'Diplomata SC', cursive;
+  color: green;
   font-size: 50px;
+  position: relative;
+  z-index: 50;
+}
+
+.beforesteps{
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.steps {
+  display: flex;
+  height: 1px;
+  margin-bottom: 4px;
+  width: 160%;
+  text-align: center;
+  margin-left: -10px;
+  background-color: #6E7682;
+  z-index: 300;
+  position: relative;
+}
+
+.platypuswetrust{
+  background-color: #27871C;
+  color: #70A37F;
+  font-family: 'Diplomata SC', cursive;
+  height: 20px;
+  width: 290px;
+  margin-top: 100px;
+  margin-right: -260px;
+  font-size: 10px;
+  padding-top: 7px;
+  padding-right: 0px;
+  padding-left: 10px;
+  text-align: center;
+  padding-bottom: 0px;
+  z-index: 30;
+}
+
+.platypusbackground {
+  width: 50px;
+  height: 50px;
+  margin-right: -80px;
+  z-index: 10;
+  margin-top: 20px;
+}
+
+.platypusbackgroundimg {
+  max-width: 300px;
+  max-height: 100px;
+  z-index: 4;
+}
+
+
+.platypusicon {
+  height: 50px;
+  width: 50px;
+  margin-right: 180px;
+  margin-top: 10px;
+  z-index: 10;
+  border-radius: 50px;
+  background-color: #B0C4B1;
+}
+
+.platypusiconimg {
+  margin-top: 5%;
+  margin-left: 10%;
+  max-width: 50px;
+  max-height: 50px;
+  z-index: 4;
+}
+
+
+.moneycontainer{
+  margin-left: 0px;
+}
+
+
+.pillarbaseahead {
+  position: relative;
+	border-bottom: 30px solid #8A94A3;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	height: 0;
+	width: 30px;
+}
+
+.fixzindex {
+  position: relative;
+  z-index: 2;
+  opacity: .99;
+}
+
+.pillarmainahead {
+  position: relative;
+	/*border-bottom: 10px solid grey;*/
+	/*border-left: 5px solid transparent;
+	border-right: 5px solid transparent;*/
+  margin-left:  10px;
+	height: 150px;
+	width: 30px;
+  background-color: #8A94A3;
+}
+
+.pillarbaseaheadahead {
+  position: relative;
+	border-bottom: 30px solid #A2AEBF;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	height: 0;
+	width: 30px;
+}
+
+.pillarmainaheadahead {
+  position: relative;
+	/*border-bottom: 10px solid grey;*/
+	/*border-left: 5px solid transparent;
+	border-right: 5px solid transparent;*/
+  margin-left:  10px;
+	height: 150px;
+	width: 30px;
+  background-color: #A0ACBC;
+}
+
+.pillarbase {
+  position: relative;
+	border-bottom: 30px solid #6E7682;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	height: 0;
+	width: 30px;
+}
+
+.pillarmain {
+  position: relative;
+	/*border-bottom: 10px solid grey;*/
+	/*border-left: 5px solid transparent;
+	border-right: 5px solid transparent;*/
+  margin-left:  10px;
+	height: 150px;
+	width: 30px;
+  background-color: #6E7682;
+}
+
+.bankroofcontainer{
+  margin-left: 75px;
+}
+
+.bankroof{
+  border-bottom: 75px solid #6E7682;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  height: 0;
+  width: 400px;
+}
+
+.bankroofinner{
+  border-bottom: 50px solid #8A94A3;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  height: 0;
+  width: 250px;
+  position: relative;
+  margin-top: 20px;
+  font-family: 'Diplomata SC', cursive;
+  font-size: 40px;
+  /*margin-bottom: -10px;*/
+  /*padding-left: 200px;*/
+  margin-right: -365px;
+  z-index: 20;
+}
+
+.ahead{
+  position: relative;
+  z-index: 10;
+  margin-left: -40px;
+  /*margin-top: -10px;*/
+}
+
+.ahead2{
+  position: relative;
+  z-index: 10;
+  margin-right: -40px;
+  /*margin-top: -10px;*/
+}
+
+.ahead4{
+  position: relative;
+  z-index: 12;
+  margin-right: -30px;
+  /*margin-top: -10px;*/
+}
+
+.ahead3{
+  position: relative;
+  z-index: 10;
+  margin-left: -30px;
+  /*margin-top: -10px;*/
+}
+
+.behind{
+  position: relative;
+  z-index: 9;
+}
+
+ /*#A9B5C6*/
+
+.bankBackground{
+  background-color: black;
+}
+
+.smallmoney{
+  margin-top: 20px;
+  margin-right: -280px;
+}
+
+.smallmoneynumber{
+  height: 0px;
+  width: 0px;
+  background-color: transparent;
+  color: #B0C4B1;
+  margin-top: 35px;
+  margin-right: -0px;
+  font-size: 10px;
+  z-index: 1000;
+  position: relative;
+  font-family: 'Diplomata SC', cursive;
+}
+
+.burst-12 {
+    background: #27871C;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    text-align: center;
+}
+.burst-12:before, .burst-12:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 40px;
+    width: 40px;
+    background: #27871C;
+}
+.burst-12:before {
+    -webkit-transform: rotate(30deg);
+       -moz-transform: rotate(30deg);
+        -ms-transform: rotate(30deg);
+         -o-transform: rotate(30deg);
+}
+.burst-12:after {
+    -webkit-transform: rotate(60deg);
+       -moz-transform: rotate(60deg);
+        -ms-transform: rotate(60deg);
+         -o-transform: rotate(60deg);
+}
+
+
+
+.button {
+    display: block;
+    width:150px;
+    margin:10px auto;
+    padding:7px 13px;
+    text-align:center;
+    background:#218984;
+    font-size:20px;
+    font-family: 'Arial', sans-serif;
+    color:#ffffff;
+    white-space: nowrap;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+
+}
+
+.button:active {
+  vertical-align: top;
+  padding: 8px 13px 6px;
+  background-color: #1D7874;
+}
+
+.button:hover, .buttonsmall:hover{
+  cursor: pointer;
+  cursor: hand;
+}
+
+
+.buttonsmall {
+    display: block;
+    width:100px;
+    margin:10px auto;
+    padding:7px 13px;
+    text-align:center;
+    background:#218984;
+    font-size:10px;
+    font-family: 'Arial', sans-serif;
+    color:#ffffff;
+    white-space: nowrap;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+
+}
+
+.buttonsmall:active {
+  vertical-align: top;
+  padding: 8px 13px 6px;
+  background-color: #1D7874;
+}
+
+
+/*font-family: 'Pacifico', cursive;*/
+
+.platybucks {
+  font-family: 'Pacifico', cursive;
+  font-size: 20px;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
