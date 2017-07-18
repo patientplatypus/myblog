@@ -4,6 +4,7 @@ import { Badge, IconButton, Heading, Paragraph, ParagraphHolder, PrimaryNavigati
 import renderIf from 'render-if'
 import styled from 'styled-components'
 import axios from 'axios'
+import './main.css'
 
 const FlexContainer = styled.div`
   display: -webkit-flex;
@@ -69,18 +70,18 @@ class OtherUserPictureContainer extends Component{
       <AlphaPictureHolder>
         <AlignContainer>
           <img style={styles.images} src={this.props.picture.pictureurl}/>
-          <br/>
           {renderIf(this.props.picture.currentprice == -1)(
-            <div>
-              <p>Not currently for sale</p>
+            <div className='platybucks'>
+              <p>not for sale</p>
             </div>
           )}
           {renderIf(this.props.picture.currentprice != -1)(
             <div>
               <AlignContainer>
-                <p>The asking price is </p>
-                <strong>{this.props.picture.currentprice}</strong><br/>
-                <button onClick={(e)=>this.sendtobuyPicture(e)}>Buy Picture!</button>
+                <div className='platybucks'>
+                  {this.props.picture.currentprice} platybucks
+                </div>
+                <div className="buttonsmall" onClick={(e)=>this.sendtobuyPicture(e)}>Buy Picture!</div>
               </AlignContainer>
             </div>
           )}

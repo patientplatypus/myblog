@@ -1,7 +1,7 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
-import React, { Component } from 'react'
-import styled from 'styled-components'
-import renderIf from 'render-if'
+import React, { Component } from "react"
+import styled from "styled-components"
+import renderIf from "render-if"
 
 const FlexContainer = styled.div`
   display: -webkit-flex;
@@ -40,13 +40,13 @@ class Modal extends Component{
   componentWillReceiveProps(nextProps){
     if (nextProps.isOpen===true && this.state.openModal===false){
       document.body.scrollTop = window.scrollY;
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
       this.setState({
         openModal: true
       })
     }
     if(nextProps.isOpen===false && this.state.openModal===true){
-      document.body.style.overflow = 'visible';
+      document.body.style.overflow = "visible";
       this.setState({
         openModal: false
       })
@@ -59,29 +59,29 @@ class Modal extends Component{
     }
 
     let modalStyle = {
-      position: 'absolute',
+      position: "absolute",
       top: window.scrollY + window.innerHeight/2,
-      left: '50%',
-      transform: 'translate(-50%, -50%)',
-      zIndex: '9999',
-      background: 'purple',
-      overflow: 'hidden',
-      minWidth: '80vw',
-      minHeight: '40vh',
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      overflowY: 'auto',
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+      zIndex: "9999",
+      background: "#8A4F7D",
+      overflow: "hidden",
+      minWidth: "80vw",
+      minHeight: "40vh",
+      maxWidth: "100vw",
+      maxHeight: "100vh",
+      overflowY: "auto",
     }
 
     let backdropStyle = {
-      position: 'absolute',
-      width: '100%',
-      height: '100%',
-      top: window.scrollY + 'px',
-      left: '0px',
-      zIndex: '9998',
-      background: 'rgba(0,0,0,0.3)',
-      overflow: 'hidden'
+      position: "absolute",
+      width: "100%",
+      height: "100%",
+      top: window.scrollY + "px",
+      left: "0px",
+      zIndex: "9998",
+      background: "rgba(0,0,0,0.3)",
+      overflow: "hidden"
     }
 
     return(

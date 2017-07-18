@@ -20,13 +20,26 @@ const FlexRow = styled.div`
 `
 
 const UserBox = styled.div`
-  padding: 2px;
-  background-color: orange;
-  border-radius: 5px;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  margin-right: 30px;
-  margin-left: 30px;
+
+    padding: 2px;
+    background-color: #9D8420;
+    color: white;
+    border-radius: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 30px;
+    margin-left: 30px;
+    padding-right: 10px;
+    padding-left: 10px;
+
+  &:hover {
+    cursor: pointer;
+    cursor: hand;
+ }
+ &:active {
+   color: black;
+   background-color: #DDBA2C
+ }
 `
 
 class OtherUser extends Component{
@@ -46,8 +59,8 @@ class OtherUser extends Component{
   render(){
     return(
       <AlignContainer>
-        <UserBox  onClick={(e)=>this.sendtocheckUser(e)}>
-        <h3>{this.props.user}</h3>
+        <UserBox onClick={(e)=>this.sendtocheckUser(e)}>
+          <h3>{this.props.user}</h3>
         </UserBox>
       </AlignContainer>
     )

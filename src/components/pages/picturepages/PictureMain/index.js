@@ -56,7 +56,7 @@ const Flex2 = styled.div`
   min-width: 200px;
   max-width: 50%;
   text-align: right;
-  background-color: skyblue;
+  background-color: #94B9AF;
 `
 
 
@@ -66,18 +66,18 @@ const Flex1 = styled.div`
   min-width: 280px;
   max-width: 70%;
   text-align: right;
-  background-color: tomato;
+  background-color: #D17166;
 `
 
 const FlexMargin = styled.div`
   flex: 1;
-  background-color: purple;
+  background-color: #8A4F7D;
   flex-direction: column;
   display: flex;
 `
 const FlexSize1 = styled.div`
   flex: 1;
-  background-color: skyblue;
+  background-color: #94B9AF;
   flex-direction: column;
   display: flex;
 `
@@ -85,7 +85,7 @@ const FlexSize1 = styled.div`
 
 const FlexSize2 = styled.div`
   flex: 2;
-  background-color: tomato;
+  background-color: #D17166;
   flex-direction: column;
   display: flex;
 `
@@ -94,7 +94,7 @@ const FlexSize1Modal = styled.div`
   flex: 1;
   height: 100%;
   min-height: 100%;
-  background-color: skyblue;
+  background-color: #94B9AF;
   flex-direction: column;
   display: flex;
 `
@@ -104,7 +104,7 @@ const FlexSize2Modal = styled.div`
   flex: 2;
   height: 100%;
   min-height: 100%;
-  background-color: tomato;
+  background-color: #D17166;
   flex-direction: column;
   display: flex;
 `
@@ -113,7 +113,7 @@ const FlexMarginModal = styled.div`
   flex: 1;
   height: 100%;
   min-height: 100%;
-  background-color: purple;
+  background-color: #8A4F7D;
   flex-direction: column;
   display: flex;
 `
@@ -128,7 +128,10 @@ const FlexRowModal = styled.div`
 const PictureHeader = styled.div`
   color: white;
   background-color: #414073;
-  padding: 3px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+  padding-left: 10px;
+  padding-right: 10px;
   margin-left: auto;
   margin-right: auto;
   margin-top: 5px;
@@ -140,7 +143,7 @@ const PictureHeader = styled.div`
 
 const YourPicturesContainer = styled.div`
   width: 100%;
-  marign: 0;
+  margin: 0;
 `
 
 const Flex1Transparent = styled.div`
@@ -207,6 +210,43 @@ const NoPictureContainerOtherUsers = styled.div`
   border-radius: 10px;
 `
 
+const ImageContainer = styled.div`
+  display: block;
+  width: 400px;
+  height: auto;
+`
+
+const AlphaPictureHolder = styled.div`
+  border-radius: 10px;
+  padding: 5px;
+  padding-top: 15px;
+  background-color: rgba(255, 251, 242, 0.7);
+  margin: 5px;
+  margin-bottom: 20px;
+  height: 56vh;
+`
+
+const AlphaPictureHolder2 = styled.div`
+  border-radius: 10px;
+  padding: 5px;
+  padding-top: 15px;
+  background-color: rgba(255, 251, 242, 0.7);
+  margin: 5px;
+  margin-bottom: 20px;
+  height: auto;
+`
+
+const OtherUserHeader = styled.div`
+  background-color: #003459;
+  color: #007EA7;
+  font-size: 30px;
+  border-radius: 10px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 5px;
+  font-weight: bolder;
+`
+
 const styles = {
   images: {
     width: "200px",
@@ -215,11 +255,35 @@ const styles = {
     paddingRight: "40px"
   },
   nopictures: {
-    marginTop: '100px',
+    marginTop: '10px',
     marginBottom: '10px'
   },
   bankBackground: {
     backgroundColor: "#A9B5C6"
+  },
+  width100:{
+    width: '100%'
+  },
+  images2: {
+    maxHeight: '100%',
+    maxWidth: '100%'
+  },
+  floatbuttons: {
+    display: 'inline-block',
+    marginLeft: '3px',
+    marginRight: '3px',
+    float: 'left',
+    marginTop: "0px"
+  },
+  warning: {
+    fontSize: "20px",
+    fontWeight: "bold",
+    color: "#5E6572",
+    backgroundColor: '#B2B2B2',
+    padding: '10px'
+  },
+  ulstyle:{
+    listStyle: "none"
   }
 }
 
@@ -250,7 +314,11 @@ class PictureMain extends Component{
       allpicturespictureurl: '',
       allpicturescurrentprice: '',
       allpicturespictureid: '',
-      allpicturesuserref: ''
+      allpicturesuserref: '',
+      picturetestOK: false,
+      picturetodelete: '',
+      picturetodeleteurl: '',
+      picturedeletemodalopen: false
     }
   }
 
@@ -266,7 +334,7 @@ class PictureMain extends Component{
       this.setState({
         username: this.props.location.state.name
       }, ()=>{
-        axios.post('http://localhost:5000/retrievepictures', {
+        axios.post('https://blooming-ravine-86876.herokuapp.com/retrievepictures', {
           name: this.state.username,
         })
           .then((response)=>{
@@ -308,7 +376,7 @@ class PictureMain extends Component{
              console.log('and the error is ', err);
            });
 
-        axios.post('http://localhost:5000/retrieveuserinfo', {
+        axios.post('https://blooming-ravine-86876.herokuapp.com/retrieveuserinfo', {
           name: this.state.username
         })
           .then((response)=>{
@@ -323,7 +391,7 @@ class PictureMain extends Component{
              console.log('and the error is ', err);
           });
 
-        axios.post('http://localhost:5000/allusers')
+        axios.post('https://blooming-ravine-86876.herokuapp.com/allusers')
           .then((response)=>{
              console.log('response from ALL USERS ', response.data);
              self.setState({
@@ -336,7 +404,7 @@ class PictureMain extends Component{
           });
 
 
-        axios.post('http://localhost:5000/allpicturesforsale', {
+        axios.post('https://blooming-ravine-86876.herokuapp.com/allpicturesforsale', {
           name: this.state.username
         })
           .then((response)=>{
@@ -368,7 +436,7 @@ class PictureMain extends Component{
 
   pulldatafunc(username){
     var self = this
-    axios.post('http://localhost:5000/retrievepictures', {
+    axios.post('https://blooming-ravine-86876.herokuapp.com/retrievepictures', {
       name: username,
     })
       .then((response)=>{
@@ -402,7 +470,7 @@ class PictureMain extends Component{
          console.log('and the error is ', err);
        });
 
-     axios.post('http://localhost:5000/retrieveuserinfo', {
+     axios.post('https://blooming-ravine-86876.herokuapp.com/retrieveuserinfo', {
        name: username
      })
        .then((response)=>{
@@ -417,7 +485,7 @@ class PictureMain extends Component{
           console.log('and the error is ', err);
        });
 
-     axios.post('http://localhost:5000/allpicturesforsale', {
+     axios.post('https://blooming-ravine-86876.herokuapp.com/allpicturesforsale', {
        name: this.state.username
      })
        .then((response)=>{
@@ -460,7 +528,7 @@ class PictureMain extends Component{
     var self = this;
     console.log('inside buyPicture and pictureurl, username, otherusername is ', pictureurl, " ", price, " ", username, " ", otherusername);
 
-    axios.post('http://localhost:5000/buyfromothers', {
+    axios.post('https://blooming-ravine-86876.herokuapp.com/buyfromothers', {
       name: username,
       othername: otherusername,
       pictureurl: pictureurl,
@@ -507,7 +575,8 @@ class PictureMain extends Component{
       this.setState({
         isModalOpenAddPicture: false,
         previewpicture: false,
-        notenoughmoney: false
+        notenoughmoney: false,
+        picturetestOK: false
       })
     }
 
@@ -542,7 +611,7 @@ class PictureMain extends Component{
     checkUser(otherusername){
       console.log('inside checkUser and otherusername is ', otherusername);
       var self = this;
-      axios.post('http://localhost:5000/retrievepictures', {
+      axios.post('https://blooming-ravine-86876.herokuapp.com/retrievepictures', {
         name: otherusername,
       })
         .then((response)=>{
@@ -582,7 +651,7 @@ class PictureMain extends Component{
     closeModalAddPictureandbuy(){
       var self = this;
 
-      axios.post('http://localhost:5000/buypictures', {
+      axios.post('https://blooming-ravine-86876.herokuapp.com/buypictures', {
         name: this.state.username,
         cost: 20,
         pictureurl: this.state.pictureurl
@@ -628,6 +697,81 @@ class PictureMain extends Component{
 
 
 
+    checkwebpictureOK(e){
+      e.preventDefault();
+      var picturepromise = new Promise((resolve) => {
+              let image = document.createElement('img');
+              // image.src = mediaObj.url;
+              image.src = this.state.pictureurl
+              console.log('in checkwebpictureOK promise and value of this.state.pictureurl is ', this.state.pictureurl)
+              image.onload = () => {
+                // mediaObj.validUrl = true;
+                // resolve(mediaObj)
+                resolve(true)
+              }
+              image.onerror = () => {
+                // mediaObj.validUrl = false;
+                // resolve(mediaObj)
+                resolve(false)
+              }
+            })
+
+      picturepromise.then((resolve)=>{
+        if(resolve){
+          this.setState({
+            picturetestOK: true,
+            previewpicture: true
+          })
+        }
+        if(!resolve){
+          this.setState({
+            picturetestOK: false,
+            previewpicture: true
+          })
+        }
+      })
+    }
+
+  deletepicturefunc(picturid, pictureurl){
+    this.setState({
+      picturetodelete: picturid,
+      picturetodeleteurl: pictureurl,
+      picturedeletemodalopen: true
+    })
+  }
+
+  deletepictureforsure(e){
+    e.preventDefault();
+    var self = this;
+
+    axios.post('https://blooming-ravine-86876.herokuapp.com/deletepicture', {
+      pictureid: this.state.picturetodelete
+    })
+    .then((response)=>{
+       console.log('response from the DELETE python call ', response.data);
+       self.pulldatafunc(this.state.username);
+       self.setState({
+         picturedeletemodalopen: false,
+         picturetodelete: "",
+         picturetodeleteurl: ""
+       })
+    })
+    .catch((err)=>{
+       console.log('python axios error');
+       console.log('and the error is ', err);
+    });
+  }
+
+  canceldelete(e){
+    e.preventDefault();
+    this.setState({
+      picturetodelete: "",
+      picturetodeleteurl: "",
+      picturedeletemodalopen: false
+    })
+  }
+
+
   render(){
 
     let pictureContainers;
@@ -635,7 +779,8 @@ class PictureMain extends Component{
           if(this.state.picturearray.length!=0){
                 pictureContainers = this.state.picturearray.map((picture,i) => {
                   return (
-                    <PictureContainer key={i} picture={picture} username={this.state.username} sellPicture={this.sellPicture.bind(this)} pulldatafunc={this.pulldatafunc.bind(this)} />
+                    <PictureContainer key={i} picture={picture} username={this.state.username}
+                    deletepicturefunc={this.deletepicturefunc.bind(this)} sellPicture={this.sellPicture.bind(this)} pulldatafunc={this.pulldatafunc.bind(this)} />
                   );
                 });
           }
@@ -645,7 +790,9 @@ class PictureMain extends Component{
           if(this.state.picturearrayforsale.length!=0){
                 pictureContainersforsale = this.state.picturearrayforsale.map((picture,i) => {
                   return (
-                    <PictureContainer key={i} picture={picture} username={this.state.username} sellPicture={this.sellPicture.bind(this)}
+                    <PictureContainer key={i} picture={picture} username={this.state.username}
+                    deletepicturefunc={this.deletepicturefunc.bind(this)}
+                    sellPicture={this.sellPicture.bind(this)}
                     pulldatafunc={this.pulldatafunc.bind(this)} />
                   );
                 });
@@ -728,11 +875,43 @@ class PictureMain extends Component{
           <div>
           <AlignContainer>
             <FlexRow>
-              <SubHeader level={2}>WELCOME {this.state.username}</SubHeader>
+              <div className="welcomeheader">
+                <p>WELCOME TO PICTURE SWAPPER {this.state.username}</p>
+                <div className="animateheadericons animationdelay7 sparkles shift1"/>
+                <div className="animateheadericons animationdelay4 shootingstar shift2"/>
+                <div className="animateheadericons animationdelay3 star shift3"/>
+                <div className="animateheadericons animationdelay7 camera shift4"/>
+                <div className="animateheadericons animationdelay13 glowystar shift5"/>
+              </div>
+
             </FlexRow>
             <FlexRow>
-              <SubHeader level={3}>THIS IS HOW MUCH MONEY YOU GOT</SubHeader>
-            </FlexRow><br/>
+              <div className="gameexplanation">
+                <p>
+                  There are five sections in my Picture Swapper App, but it&#39;s pretty intuitive!
+                </p>
+                <div className='alignlist'>
+                  <p>
+                    1. There&#39;s a bank that let&#39;s you know how much money you have.
+                  </p>
+                  <p>
+                    2. There&#39;s a picture store that let&#39;s you buy pictures from the internet.
+                  </p>
+                  <p>
+                    3. You have your picture dashboard that let&#39;s you set pictures for sale and prices.
+                  </p>
+                  <p>
+                    4. There&#39;s a section that shows all the pictures for sale.
+                  </p>
+                  <p>
+                    5. Finally there&#39;s a list of all the users. You can click their name to view their profile!
+                  </p>
+                </div>
+                <p>
+                  I hope you like it!
+                </p>
+              </div>
+          </FlexRow>
 
             <FlexRow>
               <div className='bankroofcontainer'>
@@ -840,14 +1019,21 @@ class PictureMain extends Component{
                 </Flex1Transparent>
               </FlexRow>
 
+            <br/>
+            <AlphaPictureHolder2>
+              <AlignContainer>
+                <FlexRow>
+                  <div className="picturestore"></div>
+                </FlexRow>
+                <FlexRow>
+                  <div className="buttonbig" onClick={() => {this.openModalAddPicture()}}>Buy A Picture from The Internet</div>
+                </FlexRow>
+              </AlignContainer>
+            </AlphaPictureHolder2>
             <FlexRow>
-              <SubHeader level={3}>UPLOAD A PICTURE</SubHeader>
-            </FlexRow><br/>
-            <FlexRow>
-              <div className="button" onClick={() => {this.openModalAddPicture()}}>buy a web pic</div>
-            </FlexRow>
-            <FlexRow>
-              <SubHeader level={3}>YOUR PICTURES</SubHeader>
+              <AlignContainer>
+                <div className='headingcontainer'>YOUR PICTURES</div>
+              </AlignContainer>
             </FlexRow>
             <br/>
           </AlignContainer>
@@ -859,23 +1045,57 @@ class PictureMain extends Component{
                   <h3>Upload a Picture & Buy</h3>
                 </PictureHeader>
               </AlignContainer>
+              <br/>
               <AlignContainer>
-                <input  value={this.state.pictureurl} onChange={(e)=>{this.setState({pictureurl: e.target.value})}} type="pictureurl" name="pictureurl" placeholder="Picture URL"/><br/>
-                <p><button onClick={()=>{this.setState({previewpicture: true})}}>Preview Picture</button></p>
+                <input  value={this.state.pictureurl} onChange={(e)=>{this.setState({pictureurl: e.target.value, previewpicture: false})}} type="pictureurl" name="pictureurl" placeholder="Picture URL"/><br/>
+                <AlignContainer>
+                  <FlexRow>
+                    <span>
+                      <div className="buttonsmall" style={styles.floatbuttons} onClick={(e)=>this.checkwebpictureOK(e)}>Preview Picture</div>
+                      <div className='buttonsmall' style={styles.floatbuttons} onClick={()=>this.closeModalAddPicture()}>Cancel</div>
+                    </span>
+                  </FlexRow>
+                </AlignContainer>
               </AlignContainer>
               {renderIf(this.state.previewpicture===true)(
                 <AlignContainer>
-                  <img style={styles.images} src={this.state.pictureurl}/>
-                  <p><button onClick={()=>this.closeModalAddPictureandbuy()}> Buy for 20 points </button></p>
-                  <p><button onClick={()=>this.closeModalAddPicture()}> Cancel </button></p>
-                  {renderIf(this.state.notenoughmoney===true)(
-                    <p>No picture for you! You do not have the 20 points necessary to buy!</p>
+                  {renderIf(this.state.picturetestOK===true)(
+                    <div>
+                      <AlphaPictureHolder>
+                        <FlexRow>
+                          <ImageContainer>
+                            <img style={styles.images2} src={this.state.pictureurl}/>
+                          </ImageContainer>
+                        </FlexRow>
+                        <FlexRow>
+                          <AlignContainer>
+                            <div className="platybucks">
+                              <p>20 platybucks</p>
+                            </div>
+                          </AlignContainer>
+                        </FlexRow>
+                      </AlphaPictureHolder>
+                      <FlexRow>
+                        <AlignContainer>
+                          <span>
+                            <div className='buttonsmall' style={styles.floatbuttons} onClick={()=>this.closeModalAddPictureandbuy()}> Buy</div>
+                          </span>
+                        </AlignContainer>
+                      </FlexRow>
+                      {renderIf(this.state.notenoughmoney===true)(
+                        <div style={styles.warning}>
+                          <p>No picture for you! You do not have the 20 points necessary to buy!</p>
+                        </div>
+                      )}
+                    </div>
                   )}
-                </AlignContainer>
-              )}
-              {renderIf(this.state.previewpicture===false)(
-                <AlignContainer>
-                  <button onClick={()=>this.closeModalAddPicture()}> Cancel </button>
+                  {renderIf(this.state.picturetestOK===false)(
+                    <AlignContainer>
+                      <div style={styles.warning}>
+                        <p>Sorry that picture is broken, please select another</p>
+                      </div>
+                    </AlignContainer>
+                  )}
                 </AlignContainer>
               )}
             </Modal>
@@ -887,7 +1107,6 @@ class PictureMain extends Component{
             <YourPicturesContainer>
 
                 <FlexRow>
-                  <FlexMargin/>
                   <FlexSize1>
                     <AlignContainer>
                       <PictureHeader>
@@ -918,15 +1137,15 @@ class PictureMain extends Component{
                       )}
                     </PictureScrollUsers>
                   </FlexSize2>
-                  <FlexMargin/>
                 </FlexRow>
-
-
-
+                <br/>
                 <FlexRow>
-                  <SubHeader level={3}>PICTURES FOR SALE</SubHeader>
+                  <AlignContainer>
+                    <div className='headingcontainer'>PICTURES FOR SALE</div>
+                  </AlignContainer>
                 </FlexRow>
-                <FlexRow>
+                <br/>
+                <FlexRow style={styles.width100}>
                   <FlexMargin/>
                   <FlexSize2>
                     <PictureScrollUsers>
@@ -940,9 +1159,13 @@ class PictureMain extends Component{
                   </FlexSize2>
                   <FlexMargin/>
                 </FlexRow>
+                <br/>
                 <FlexRow>
-                  <SubHeader level={3}>OTHER USERS</SubHeader>
+                  <AlignContainer>
+                    <div className='headingcontainer'>OTHER USERS</div>
+                  </AlignContainer>
                 </FlexRow>
+                <br/>
                 <FlexRow>
                   <FlexMargin/>
                   <FlexSize1>
@@ -968,18 +1191,62 @@ class PictureMain extends Component{
               <PictureHeader>
                 <h3>Here is the Picture You Can Buy!</h3>
               </PictureHeader>
-              <FlexRow>
-                <img src={this.state.allpicturespictureurl}/>
-              </FlexRow>
-              <FlexRow>
-                <h4>The cost is <strong>{this.state.allpicturescurrentprice}</strong></h4>
-              </FlexRow>
+              <AlphaPictureHolder>
+                <FlexRow>
+                  <ImageContainer>
+                  <img style={styles.images2} src={this.state.allpicturespictureurl}/>
+                  </ImageContainer>
+                </FlexRow>
+                <AlignContainer>
+                  <FlexRow>
+                    <div className="platybucks">
+                      <p>{this.state.allpicturescurrentprice} platybucks</p>
+                    </div>
+                  </FlexRow>
+                </AlignContainer>
+              </AlphaPictureHolder>
               {renderIf(this.state.notenoughmoney===true)(
-                <p>No picture for you! You do not have the money necessary to buy!</p>
+                <div style={styles.warning}>
+                  <p>No picture for you! You do not have the money necessary to buy!</p>
+                </div>
               )}
               <FlexRow>
-                <button onClick={()=>this.buyPicture(this.state.allpicturespictureurl,this.state.allpicturescurrentprice,this.state.username, this.state.allpicturesuserref)}>Buy!</button><br/>
-                <button onClick={()=>{this.setState({isModalOpenAllPictures: false, notenoughmoney: false})}}>Cancel</button>
+                <AlignContainer>
+                  <span>
+                  <div className="buttonsmall" style={styles.floatbuttons} onClick={()=>this.buyPicture(this.state.allpicturespictureurl,this.state.allpicturescurrentprice,this.state.username, this.state.allpicturesuserref)}>Buy!</div>
+                  <div className='buttonsmall' style={styles.floatbuttons} onClick={()=>{this.setState({isModalOpenAllPictures: false, notenoughmoney: false})}}>Cancel</div>
+                  </span>
+                </AlignContainer>
+              </FlexRow>
+              <br/>
+            </AlignContainer>
+          </Modal>
+
+          <Modal isOpen={this.state.picturedeletemodalopen}>
+            <AlignContainer>
+              <PictureHeader>
+                <h3>Are you super sure you want to delete this picture forever and ever?</h3>
+              </PictureHeader>
+              <AlphaPictureHolder>
+                <FlexRow>
+                  <ImageContainer>
+                    <img style={styles.images2} src={this.state.picturetodeleteurl}/>
+                  </ImageContainer>
+                </FlexRow>
+                <FlexRow>
+                  <AlignContainer>
+                    <div className='platybucks'>
+                      <p>I want to live!</p>
+                    </div>
+                  </AlignContainer>
+                </FlexRow>
+              </AlphaPictureHolder>
+              <br/>
+              <FlexRow>
+                <span>
+                  <div className='buttonsmallwarning' style={styles.floatbuttons} onClick={(e)=>{this.deletepictureforsure(e)}}>Delete</div>
+                  <div className='buttonsmall' style={styles.floatbuttons} onClick={(e)=>{this.canceldelete(e)}}>Cancel</div>
+                </span>
               </FlexRow>
               <br/>
             </AlignContainer>
@@ -989,14 +1256,15 @@ class PictureMain extends Component{
 
           <Modal isOpen={this.state.isModalOpenOtherUser} >
             <AlignContainer>
-              <h3>
-                These are all the pictures from {this.state.otherusername}
-              </h3>
+              <OtherUserHeader>
+                <p>{this.state.otherusername}&#39;s Pics</p>
+              </OtherUserHeader>
             </AlignContainer>
             {renderIf(this.state.otheruserpicturearrayforsale.length===0 && this.state.otheruserpicturearray.length===0)(
                 <AlignContainer>
+                <br/>
                   <PictureHeader style={styles.nopictures}>
-                    <h3>This user has no pictures, nor any pictures for sale...so sad too bad.</h3>
+                    <p>{this.state.username} has no pictures, nor any pictures for sale...so sad too bad.</p>
                   </PictureHeader>
                 </AlignContainer>
             )}
@@ -1039,10 +1307,14 @@ class PictureMain extends Component{
             {renderIf(this.state.notenoughmoney===true)(
               <p>No picture for you! You do not have the points necessary to buy!</p>
             )}
+              <br/>
               <AlignContainer>
-                <button onClick={()=>this.closeModalOtherUser()}> Cancel </button>
+                <div className='buttonsmall' onClick={()=>this.closeModalOtherUser()}>Cancel</div>
               </AlignContainer>
+              <br/>
           </Modal>
+
+
 
         </FlexContainer>
       )}

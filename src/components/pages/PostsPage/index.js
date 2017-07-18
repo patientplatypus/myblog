@@ -31,11 +31,11 @@ const ParagraphHolder = styled.div`
 
 const PostsPage = () => {
   return (
-    <FlexContainer>
+    <div>
       <FlexRow>
         <Posts4/>
       </FlexRow>
-    </FlexContainer>
+    </div>
   )
 }
 

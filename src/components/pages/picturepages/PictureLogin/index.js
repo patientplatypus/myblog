@@ -12,6 +12,7 @@ import {
   Switch
 } from 'react-router-dom';
 import PictureMain from '../PictureMain'
+import '../PictureMain/main.css';
 
 // import {withRouter} from 'react-router-dom';
 
@@ -35,6 +36,25 @@ const Hello = styled.div`
   background-color: blue;
 `
 
+const InputContainer = styled.div`
+  margin: 5px;
+  float: left;
+  display: inline-block;
+`
+
+const TalkyContainer = styled.div`
+  margin: 10px auto;
+  font-size: 20px;
+  font-weight: bold;
+  color: #FFFFFF;
+  background-color: #00171F;
+  line-height: 30px;
+  text-align: center;
+  width: 80%;
+  padding: 10px;
+`
+
+
 const styles = {
   images: {
     maxWidth: "80%",
@@ -51,6 +71,20 @@ const styles = {
     maxHeight: "222px",
     marginRight: "10px",
     marginBottom: "5px"
+  },
+  floatbuttons: {
+    display: 'inline-block',
+    marginLeft: '3px',
+    marginRight: '3px',
+    float: 'left',
+    marginTop: "0px"
+  },
+  warning: {
+    fontSize: "20px",
+    fontWeight: "bold",
+    color: "#5E6572",
+    backgroundColor: '#B2B2B2',
+    padding: '10px'
   }
 }
 
@@ -75,8 +109,13 @@ class PictureLogin extends Component{
     //usersuccessfullyadded useralreadyexists
     e.preventDefault();
     var self = this;
+    self.setState({
+      useralreadyexists: false,
+      usernamenotfound: false,
+      passwordsdontmatch: false
+    })
     console.log('inside registerclick and name is: ', this.state.name, ' password is ', this.state.password);
-    axios.post('http://localhost:5000/register', {
+    axios.post('https://blooming-ravine-86876.herokuapp.com/register', {
       name: this.state.name,
       password: this.state.password
     })
@@ -92,6 +131,11 @@ class PictureLogin extends Component{
           }
         })
        }
+       if(response.data === "useralreadyexists"){
+         self.setState({
+           useralreadyexists: true
+         })
+       }
       })
      .catch(()=>{
        console.log('python axios error');
@@ -102,8 +146,13 @@ class PictureLogin extends Component{
     //passwordsmatch passwordsdontmatch usernamenotfound
     e.preventDefault();
     var self = this;
+    self.setState({
+      usernamenotfound: false,
+      useralreadyexists: false,
+      passwordsdontmatch: false
+    })
     console.log('inside loginclick and name is: ', this.state.name, ' password is ', this.state.password);
-    axios.post('http://localhost:5000/login', {
+    axios.post('https://blooming-ravine-86876.herokuapp.com/login', {
       name: this.state.name,
       password: this.state.password
     })
@@ -119,6 +168,16 @@ class PictureLogin extends Component{
           }
         })
        }
+       if (response.data === 'usernamenotfound'){
+         self.setState({
+           usernamenotfound: true
+         })
+       }
+       if(response.data === 'passwordsdontmatch'){
+         self.setState({
+           passwordsdontmatch: true
+         })
+       }
      })
      .catch((err)=>{
        console.log('python axios error');
@@ -128,7 +187,10 @@ class PictureLogin extends Component{
 
   resetRedirect(){
     this.setState({
-      redirect: ""
+      redirect: "",
+      usernamenotfound: false,
+      useralreadyexists: false,
+      passwordsdontmatch: false,
     })
   }
 
@@ -136,11 +198,54 @@ class PictureLogin extends Component{
     return(
         <FlexContainer>
           <FlexRow>
-            <div>Login</div>
-            <input  value={this.state.name} onChange={(e)=>{this.setState({name: e.target.value})}} type="username" name="username" placeholder="User Name"/><br/>
-            <input  value={this.state.password} onChange={(e)=>{this.setState({password: e.target.value})}} type="password" name="password" placeholder="Password"/><br/>
-            <button onClick={(e)=>this.registerClick(e)}>Register</button>
-            <button onClick={(e)=>this.loginClick(e)}>Login</button>
+            <div className="loginheader">Login to PictureSwapper!</div>
+            <AlignContainer>
+              <span>
+                <InputContainer>
+                  <input  value={this.state.name} onChange={(e)=>{this.setState({name: e.target.value})}} type="username" name="username" placeholder="User Name"/>
+                </InputContainer>
+                <InputContainer>
+                  <input  value={this.state.password} onChange={(e)=>{this.setState({password: e.target.value})}} type="password" name="password" placeholder="Password"/>
+                </InputContainer>
+              </span>
+            </AlignContainer>
+          </FlexRow>
+          <br/>
+          <FlexRow>
+            <AlignContainer>
+              <span>
+              <div className='buttonsmall' style={styles.floatbuttons} onClick={(e)=>this.registerClick(e)}>Register</div>
+              <div className='buttonsmall' style={styles.floatbuttons} onClick={(e)=>this.loginClick(e)}>Login</div>
+              </span>
+            </AlignContainer>
+          </FlexRow>
+          {renderIf(this.state.usernamenotfound === true)(
+          <FlexRow>
+            <div style={styles.warning}>
+              <p>Sorry that username was not found, please try again or register a new name</p>
+            </div>
+          </FlexRow>
+          )}
+          {renderIf(this.state.useralreadyexists === true)(
+          <FlexRow>
+            <div style={styles.warning}>
+              <p>Sorry that user already exists, please try registering a unique username</p>
+            </div>
+          </FlexRow>
+          )}
+          {renderIf(this.state.passwordsdontmatch === true)(
+          <FlexRow>
+            <div style={styles.warning}>
+              <p>Sorry that is the wrong password for that username</p>
+            </div>
+          </FlexRow>
+          )}
+
+          <FlexRow>
+            <TalkyContainer>
+              <p>Above you can log in to the latest small thing I&#39;ve been working on. Don&#39;t worry about the password, you can make a new log in using the register button if you haven&#39;t been here before. The idea is pretty simple. You use "platybucks" to trade pictures with other users. It&#39;s fun! Don&#39;t worry if this all sounds a bit confusing, I&#39;ll walk you through my little toy.</p>
+              <p>Give it a try!</p>
+            </TalkyContainer>
           </FlexRow>
         </FlexContainer>
     )

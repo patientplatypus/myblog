@@ -22,13 +22,13 @@ const FlexRow = styled.div`
 `
 
 const SellContainer = styled.div`
-  background-color: orange;
+  background-color: #D17166;
   border-radius: 5px;
   padding: 10 px;
   margin: 5 px;
   width: 80%;
   border-width: 30px;
-  border-color: purple;
+  border-color: #8A4F7D;
   border-style: solid;
   margin-top: 10px;
 `
@@ -49,7 +49,9 @@ const styles = {
   warning: {
     fontSize: "20px",
     fontWeight: "bold",
-    color: "red"
+    color: "#5E6572",
+    backgroundColor: '#B2B2B2',
+    padding: '10px'
   }
 }
 
@@ -104,7 +106,7 @@ class SellModal extends Component{
   sendtoSellModalClose(e){
     e.preventDefault();
     if (Number.isInteger(Number(this.state.currentprice))){
-      axios.post('http://localhost:5000/changeprice', {
+      axios.post('https://blooming-ravine-86876.herokuapp.com/changeprice', {
         pictureid: this.state.pictureid,
         name: this.state.username,
         userref: this.state.userref,
@@ -137,7 +139,7 @@ class SellModal extends Component{
             <p>Enter a New Price to Sell At</p>
           </FlexRow>
 
-          <input  value={this.state.currentprice} onChange={(e)=>{this.setState({currentprice: e.target.value})}} type="currentprice" name="currentprice" placeholder="currentprice"/><br/>
+          <input  value={this.state.currentprice} onChange={(e)=>{this.setState({currentprice: e.target.value})}} type="currentprice" name="currentprice" placeholder="set a price"/><br/>
           {renderIf(Number.isInteger(Number(this.state.currentprice))===false)(
             <FlexRow>
               <p style={styles.warning}> You are only allowed to set the price to a positive integer value!</p>

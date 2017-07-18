@@ -22,7 +22,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <Router>
         <div>
-        <Route path="/" component={Posts3} exact />
+        <Route path="/" component={Posts4} exact />
         <Route path="/picturemain" component={PictureMain} exact />
         <Route path="/home" component={HomePage} exact />
         <Route path="/about" component={AboutPage} exact />

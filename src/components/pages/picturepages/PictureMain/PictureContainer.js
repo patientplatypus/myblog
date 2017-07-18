@@ -5,6 +5,7 @@ import renderIf from 'render-if'
 import styled from 'styled-components'
 import axios from 'axios'
 import './main.css'
+import Modal from './Modal.js'
 
 const FlexContainer = styled.div`
   display: -webkit-flex;
@@ -19,6 +20,10 @@ const FlexContainer = styled.div`
 const FlexRow = styled.div`
   flex-direction: row;
 `
+// const PictureContainerStyling = styled.div`
+//   text-align: center;
+//   height: auto;
+// `
 
 const AlphaPictureHolder = styled.div`
   border-radius: 10px;
@@ -26,17 +31,36 @@ const AlphaPictureHolder = styled.div`
   padding-top: 15px;
   background-color: rgba(255, 251, 242, 0.7);
   margin: 5px;
+  margin-bottom: 20px;
+  height: 56vh;
 `
+
+
+// border-radius: 10px;
+// padding: 5px;
+// padding-top: 15px;
+// background-color: rgba(255, 251, 242, 0.7);
+// margin: 5px;
+// max-height: 56vh;
+// -webkit-align-items: center;
+// align-items: center;
+// -webkit-justify-content: center;
+// justify-content: center;
+// margin: 0 auto;
+// display: flex;
+// flex-direction:column;
+
 
 // FFFBF2
 // rgba(255, 251, 242, 1)
 
 const styles = {
   images: {
-    maxWidth: "90%",
-    minWidth: "90%",
-    paddingLeft: "40px",
-    paddingRight: "40px"
+    width: 'auto',
+    maxHeight: "72%",
+    minHeight: "72%",
+    // paddingLeft: "40px",
+    // paddingRight: "40px"
   },
   floatbuttons: {
     display: 'inline-block',
@@ -50,8 +74,7 @@ const styles = {
 class PictureContainer extends Component{
   constructor(props){
     super(props);
-    this.state = {
-    }
+    this.state={}
   }
 
   componentDidMount(){
@@ -67,7 +90,7 @@ class PictureContainer extends Component{
   stopSelling(e){
     e.preventDefault();
     var self = this;
-    axios.post('http://localhost:5000/changeprice', {
+    axios.post('https://blooming-ravine-86876.herokuapp.com/changeprice', {
       pictureid: this.props.picture.pictureid,
       name: this.props.username,
       userref: this.props.picture.userref,
@@ -84,35 +107,48 @@ class PictureContainer extends Component{
      });
   }
 
+  sendtoDeletePictureFunc(e){
+    e.preventDefault();
+    this.props.deletepicturefunc(this.props.picture.pictureid, this.props.picture.pictureurl)
+  }
+
   render(){
     return(
       <AlignContainer>
 
         {renderIf(this.props.picture.currentprice == -1)(
-          <div>
-            <AlphaPictureHolder>
-              <AlignContainer>
-              <img style={styles.images} src={this.props.picture.pictureurl}/>
-              <div className="buttonsmall" onClick={(e)=>this.sendtoSellPicture(e)}>Sell Picture</div>
-              </AlignContainer>
-            </AlphaPictureHolder>
-          </div>
+
+
+              <AlphaPictureHolder>
+                  <img style={styles.images} src={this.props.picture.pictureurl}/>
+                  <AlignContainer>
+                    <br/>
+                    <span>
+                      <div className="buttonsmall" style={styles.floatbuttons} onClick={(e)=>this.sendtoSellPicture(e)}>Sell Picture</div>
+                      <div className="buttonsmallwarning" style={styles.floatbuttons} onClick={(e)=>this.sendtoDeletePictureFunc(e)}>Delete</div>
+                    </span>
+                  </AlignContainer>
+              </AlphaPictureHolder>
+
+
         )}
         {renderIf(this.props.picture.currentprice != -1)(
-          <div>
-            <AlphaPictureHolder>
-              <AlignContainer>
-                <img style={styles.images} src={this.props.picture.pictureurl}/>
-                <div className="platybucks">
-                  <p><strong>{this.props.picture.currentprice} </strong> platybucks</p>
-                </div>
-                <span>
-                  <div className="buttonsmall" style={styles.floatbuttons} onClick={(e)=>this.sendtoSellPicture(e)}>Change Price</div>
-                  <div className="buttonsmall" style={styles.floatbuttons} onClick={(e)=>this.stopSelling(e)}>Stop Selling</div>
-                </span>
-              </AlignContainer>
-            </AlphaPictureHolder>
-          </div>
+
+
+              <AlphaPictureHolder>
+                  <img style={styles.images} src={this.props.picture.pictureurl}/>
+                    <AlignContainer>
+                      <div className="platybucks">
+                        <p><strong>{this.props.picture.currentprice} </strong> platybucks</p>
+                      </div>
+                    <span>
+                      <div className="buttonsmall" style={styles.floatbuttons} onClick={(e)=>this.sendtoSellPicture(e)}>Change Price</div>
+                      <div className="buttonsmall" style={styles.floatbuttons} onClick={(e)=>this.stopSelling(e)}>Stop Selling</div>
+                    </span>
+                  </AlignContainer>
+              </AlphaPictureHolder>
+
+
         )}
         <br/>
 
