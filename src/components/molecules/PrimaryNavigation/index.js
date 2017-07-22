@@ -29,6 +29,7 @@ const PrimaryNavigation = (props) => {
       <li><Link to="/posts" activeClassName="active">Posts</Link></li>
       <li><Link to="/message" activeClassName="active">Message</Link></li>
       <li><Link to="/pictureswapper" activeClassName="active">Picture Swapper</Link></li>
+      <li><Link to="/emojimagic" activeClassName="active">Emoji Magic</Link></li>
     </Nav>
   )
 }

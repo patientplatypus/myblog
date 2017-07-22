@@ -2,7 +2,7 @@ import React from 'react'
 import { Switch, Route,  BrowserRouter as Router } from 'react-router-dom'
 import { injectGlobal, ThemeProvider } from 'styled-components'
 
-import { HomePage, AboutPage, PictureSwapper, PostsPage, Posts1, Posts2, Posts3, Posts4, PostsArchive, MessagePage } from 'components'
+import { HomePage, AboutPage, PictureSwapper, PostsPage, Posts1, Posts2, Posts3, Posts4, PostsArchive, MessagePage, EmojiMagic } from 'components'
 import PictureMain from './pages/picturepages/PictureMain'
 
 import createHistory from 'history/createBrowserHistory'
@@ -34,6 +34,7 @@ const App = () => {
         <Route path="/postpages/3" component={Posts3} exact />
         <Route path="/postpages/4" component={Posts4} exact />
         <Route path="/postsarchive" component={PostsArchive} exact />
+        <Route path="/emojimagic" component={EmojiMagic} exact />
         </div>
       </Router>
     </ThemeProvider>

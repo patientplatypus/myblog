@@ -492,7 +492,7 @@ class Posts4 extends Component{
           <div style={styles.chooseyourweapon}>
             <div className="weapontag">
               <p>
-                &nbsp;Choose Your Weapon
+               	Choose Your Weapon
               </p>
               <div className="crossedswords1"/>
               <div className="crossedswords2"/>

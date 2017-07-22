@@ -2,6 +2,8 @@
 const path = require('path')
 require("babel-core/register");
 require("babel-polyfill");
+// require('velocity-animate');
+// require('velocity-animate/velocity.ui');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const devServer = require('@webpack-blocks/dev-server2')
 const splitVendor = require('webpack-blocks-split-vendor')
@@ -60,6 +62,17 @@ const fixcss = () => () => ({
 })
 
 
+//need to use the following to get lodash to work for velocity-react
+//according to internet https://github.com/webpack/webpack/issues/4030
+// resolve: {
+//         modules: [
+//             "node_modules",
+//         ],
+//         extensions: [".js", ".jsx"],
+//     },
+
+
+//however that clearly won't work with my configuration
 const resolveModules = modules => () => ({
   resolve: {
     modules: [].concat(modules, ['node_modules']),
