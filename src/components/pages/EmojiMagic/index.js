@@ -6,6 +6,7 @@ import CanvasContainer from './CanvasContainer';
 import renderIf from 'render-if'
 import EmojiSelector from './EmojiSelector';
 import glamorous from "glamorous";
+import {Motion, spring} from 'react-motion';
 
 const FlexContainer = styled.div`
   display: -webkit-flex;
@@ -54,6 +55,18 @@ const Hello = styled.div`
 //   }),
 // );
 
+const EmojiGlamor = glamorous.div(
+  {
+    fontSize: '100px',
+    backgroundColor: 'red',
+    borderRadius: "20px"
+  },
+  ({size})=>({
+    width: size,
+    height: size*1.2,
+    fontSize: size
+  })
+);
 
 const styles = {
   SelectorMargin: {
@@ -64,6 +77,9 @@ const styles = {
   },
   relativeStyle: {
     position: "relative"
+  },
+  tornadostyling: {
+    fontSize: '100px'
   }
 }
 
@@ -71,10 +87,12 @@ class EmojiMagic extends Component{
   constructor(props){
     super(props)
     this.state = {
-      searchEmoji: null,
+      searchEmoji: '',
       emojinumber: null,
       searchVisible: true,
-      savedEmoji: null
+      savedEmoji: null,
+      tornadobuttonvisible: true,
+      sendTornado: false
     }
   }
 
@@ -93,6 +111,26 @@ class EmojiMagic extends Component{
       searchEmoji: emojiname,
       savedEmoji: emojiname,
       searchVisible: false
+    })
+  }
+
+  tornadoclicked(e){
+    e.preventDefault();
+    this.setState({
+      tornadobuttonvisible: false
+    })
+    this.setState({
+      sendTornado: true
+    })
+  }
+
+  tornadoDone(){
+    console.log('inside tornadoDone');
+    this.setState({
+      sendTornado: false,
+      tornadobuttonvisible: true
+    }, ()=>{
+      console.log('after sendTornado change state and its value is ', this.state.sendTornado)
     })
   }
 
@@ -116,17 +154,33 @@ class EmojiMagic extends Component{
         <FlexRow>
           <PrimaryNavigation/>
         </FlexRow>
+        <br/>
         <FlexRow>
-          <input style={styles.inputstyle}  value={this.state.searchEmoji} onClick={(e)=>{this.setState({searchEmoji:""})}} onChange={(e)=>{this.setState({searchEmoji: e.target.value, searchVisible:true})}} type="searchEmoji" name="searchEmoji" placeholder="Search Emoji"/><br/>
+          <input style={styles.inputstyle}  value={this.state.searchEmoji} onClick={(e)=>{this.setState({searchEmoji:""})}} onChange={(e)=>{this.setState({searchEmoji: e.target.value, searchVisible:true})}} type="searchEmoji" name="searchEmoji" placeholder="Search Emoji"/>
         </FlexRow>
         <FlexRow style={styles.relativeStyle}>
           <EmojiSelector styles={styles.SelectorMargin} searchEmoji={this.state.searchEmoji} clearSearchBox={this.clearSearchBox.bind(this)} setEmoji={this.setEmoji.bind(this)}  searchVisible={this.state.searchVisible} setSelectBox={this.setSelectBox.bind(this)}/>
         </FlexRow>
+        <br/>
         <FlexRow>
-          <CanvasContainer emojinumber={this.state.emojinumber} searchEmoji={this.state.searchEmoji} savedEmoji={this.state.savedEmoji}/>
+          <CanvasContainer emojinumber={this.state.emojinumber} searchEmoji={this.state.searchEmoji}
+          tornadoDone={this.tornadoDone.bind(this)}
+           savedEmoji={this.state.savedEmoji} sendTornado={this.state.sendTornado}/>
         </FlexRow>
+        <br/>
         <FlexRow>
+          <Motion style={{fontspring: spring(this.state.tornadobuttonvisible ? 100 : 0)}}>
+             {style =>
+               (
+                 <EmojiGlamor
+                  size={`${style.fontspring}px`}
+                  onClick={(e)=>{this.tornadoclicked(e)}}
+                 >&#127786;</EmojiGlamor>
+               )
+             }
+           </Motion>
         </FlexRow>
+        <br/>
       </FlexContainer>
     )
   }

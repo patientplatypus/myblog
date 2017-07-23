@@ -106,6 +106,7 @@
     "redux-saga-thunk": "^0.5.0",
     "render-if": "^0.1.1",
     "simple-load-script": "^1.0.2",
+    "simplex-noise": "^2.3.0",
     "styled-components": "^2.0.0",
     "styled-theme": "^0.3.0",
     "styled-tools": "^0.1.2",

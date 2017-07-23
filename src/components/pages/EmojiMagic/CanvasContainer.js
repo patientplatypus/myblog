@@ -1,9 +1,11 @@
 // https://github.com/diegohaz/arc/wiki/Atomic-Design
 import React, { Component } from 'react'
 import { Badge, IconButton, Heading, Paragraph, ParagraphHolder, PrimaryNavigation, Blockquote } from 'components'
+import renderIf from 'render-if'
 import styled from 'styled-components'
 import ReactDOM from 'react-dom'
 import EmojiAdder from './EmojiAdder';
+import Tornado from './Tornado';
 
 const FlexContainer = styled.div`
   display: -webkit-flex;
@@ -49,23 +51,17 @@ class CanvasContainer extends Component{
       yClick: 0,
       tempArray: [],
       emojisXY: [],
-      emojinumber: "\\01F61C"
+      emojinumber: "\\01F61C",
     };
   }
 
   componentDidMount() {
       // console.log('inside componentdidmount of CanvasContainer');
+      // localStorage.setItem('tornadoX', -1);
+      // localStorage.setItem('tornadoY', -1);
        this.updateCanvas();
    }
 
-  // componentWillReceiveProps(nextProps){
-  //   console.log('in CanvasContainer componentWillReceiveProps and value of emojinumber is ', nextProps.emojinumber);
-  //   if (nextProps.emojinumber!=undefined){
-  //     this.setState({
-  //       emojinumber: nextProps.emojinumber
-  //     })
-  //   }
-  // }
 
    updateCanvas() {
       let canvas = ReactDOM.findDOMNode(this.refs.myCanvas);
@@ -156,26 +152,41 @@ class CanvasContainer extends Component{
     }
   }
 
-  // let addEmojis;
-    // var self = this;
-
-
-    AddEmojis(){
+  AddEmojis(){
       var self = this;
       var counter = 0;
       let emojiReturn;
       if(self.state.emojisXY.length!=0){
         emojiReturn = self.state.emojisXY.map((emojiXY,i) => {
          return (
-           <EmojiAdder style={styles.clickthrough} key={i} emojiXY={emojiXY} highestIndex={this.state.emojisXY.length-1} indexValue={i}
-           counterValue={counter}/>
+            <EmojiAdder style={styles.clickthrough} key={i} emojiXY={emojiXY}
+            highestIndex={this.state.emojisXY.length-1} indexValue={i}
+            counterValue={counter} sendTornado={this.props.sendTornado}/>
          );
          counter = counter+1;
        });
      }
      return(emojiReturn);
-    }
+  }
 
+  SpawnTornado(){
+    var self = this;
+    var minX = Math.ceil(100);
+    var maxX = Math.floor(800);
+    var randomX = Math.floor(Math.random() * (maxX - minX)) + minX; //The maximum is exclusive and the minimum is inclusive
+
+    var minY = Math.ceil(100);
+    var maxY = Math.floor(700);
+    var randomY = Math.floor(Math.random() * (maxY - minY)) + minY; //The maximum is exclusive and the minimum is inclusive
+
+    return(
+      <div>
+        {renderIf(this.props.sendTornado===true)(
+            <Tornado randomX={randomX} tornadoDone={this.props.tornadoDone.bind(this)} randomY={randomY}/>
+        )}
+      </div>
+    )
+  }
 
   render(){
      return (
@@ -184,10 +195,10 @@ class CanvasContainer extends Component{
            <CanvasRelative>
             <canvas style={styles.canvasStyle} onClick={(e)=>this.canvasClick(e)} ref="myCanvas" width={1000} height={800}/>
             {this.AddEmojis()}
+            {this.SpawnTornado()}
            </CanvasRelative>
          </FlexRow>
          <FlexRow>
-
          </FlexRow>
        </div>
      );
